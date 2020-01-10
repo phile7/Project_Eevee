@@ -16,6 +16,7 @@ public class ViewCommand implements Command {
 		WriteDAO dao = new WriteDAO();
 		WriteDTO[] arr = null;
 		CommentDTO[] arrComment = null;
+		CommentDTO[] arrCommentToComment = null;
 
 		// 입력한 값 받아오기
 		int uid = Integer.parseInt(request.getParameter("uid"));
@@ -33,7 +34,15 @@ public class ViewCommand implements Command {
 				request.setAttribute("page", page); // 페이징
 				arrComment = dao.commentRead(uid);
 				request.setAttribute("comment", arrComment);
-				request.setAttribute("commentToComment", arrComment);
+				for (int i = 0; i < arrComment.length; i++) {
+					arrCommentToComment = null;
+					arrCommentToComment = dao.commentToCommentRead(arrComment[i].getCo_uid());
+					if(arrCommentToComment != null) {
+						request.setAttribute("commentToComment" + i, arrCommentToComment);
+						request.setAttribute("indexCommentToComment" + i, arrCommentToComment.length);
+					}
+				}
+				request.setAttribute("indexComment", arrComment.length);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

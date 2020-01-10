@@ -18,7 +18,9 @@ public interface P {
 	
 	public static final String SQL_COMMENT_DELETE_BY_UID = "DELETE FROM comment WHERE co_uid = ?";
 	
-	public static final String SQL_COMMENT_SELECT_BY_UID_AT_PLAYGROUND = "select * from comment, member where comment.mb_uid = member.mb_uid and co_depth in (1, 2) and co_puid = ?";
+	public static final String SQL_COMMENT_SELECT_BY_UID_AT_PLAYGROUND = "select * from comment, member where comment.mb_uid = member.mb_uid and co_depth in (1) and co_puid = ?";
+
+	public static final String SQL_COMMENT_TO_COMMENT_SELECT_BY_UID_AT_PLAYGROUND = "select * from comment, member where comment.mb_uid = member.mb_uid and co_depth in (2) and co_puid = ?";
 	
 	public static final String SQL_WRITE_SELECT = "select * from p_write, member where p_write.mb_uid = member.mb_uid ORDER BY pwr_uid DESC";
 

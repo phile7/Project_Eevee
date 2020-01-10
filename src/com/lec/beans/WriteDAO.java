@@ -308,11 +308,26 @@ public class WriteDAO {
 			rs = pstmt.executeQuery();
 			arr = createCommentArray(rs);
 		} finally {
-			close();
+			
 		}
 
 		return arr;
-	}	
+	}
+	
+	public CommentDTO[] commentToCommentRead(int pwr_uid) throws SQLException {
+		CommentDTO[] arr = null;
+
+		try {
+			pstmt = conn.prepareStatement(P.SQL_COMMENT_TO_COMMENT_SELECT_BY_UID_AT_PLAYGROUND);
+			pstmt.setInt(1, pwr_uid);
+			rs = pstmt.executeQuery();
+			arr = createCommentArray(rs);
+		} finally {
+			pstmt.close();
+		}
+
+		return arr;
+	}
 
 	// 댓글 삭제
 	public int deleteCommentByUid(int co_uid) throws SQLException {
