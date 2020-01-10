@@ -9,4 +9,16 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+     <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>BlockJspRequest</web-resource-name>
+      <description>URL로 JSP 접근 차단</description>
+      <url-pattern>*.jsp</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name></role-name>
+    </auth-constraint>
+  </security-constraint>
 </web-app>
