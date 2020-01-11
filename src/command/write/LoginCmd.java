@@ -12,7 +12,7 @@ public class LoginCmd implements Command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 	
 		UserDAO dao = new UserDAO();
-		int cnt = 0;
+		String [] arr = null;
 		
 		String uid = request.getParameter("id");
 		String pw = request.getParameter("pw");
@@ -21,14 +21,16 @@ public class LoginCmd implements Command{
 			
 			try {
 				
-				cnt = dao.login(uid, pw);
+				arr = dao.login(uid, pw);
 			
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
 			
 		}
-		request.setAttribute("result", cnt);
+		request.setAttribute("result", arr[0]);
+		request.setAttribute("uid", arr[1]);
+		request.setAttribute("level", arr[2]);
 		
 		
 

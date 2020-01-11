@@ -3,9 +3,7 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 /* Drop Tables */
 
 DROP TABLE IF EXISTS comment;
-DROP TABLE IF EXISTS c_file;
 DROP TABLE IF EXISTS c_write;
-DROP TABLE IF EXISTS p_file;
 DROP TABLE IF EXISTS p_write;
 DROP TABLE IF EXISTS t_write;
 DROP TABLE IF EXISTS member;
@@ -29,22 +27,10 @@ CREATE TABLE comment
 );
 
 
-CREATE TABLE c_file
-(
-	cbf_uid int NOT NULL AUTO_INCREMENT,
-	cbf_source varchar(100) NOT NULL,
-	cbf_file varchar(100) NOT NULL,
-	cbf_order int DEFAULT 1,
-	cwr_uid int NOT NULL,
-	PRIMARY KEY (cbf_uid)
-);
-
-
 CREATE TABLE c_write
 (
 	cwr_uid int NOT NULL AUTO_INCREMENT,
 	cwr_subject varchar(40) NOT NULL,
-	cwr_type varchar(2) NOT NULL,
 	cwr_content text,
 	cwr_viewcnt int DEFAULT 0,
 	cwr_regdate datetime DEFAULT now(),
@@ -68,17 +54,6 @@ CREATE TABLE member
 );
 
 
-CREATE TABLE p_file
-(
-	pbf_uid int NOT NULL AUTO_INCREMENT,
-	pbf_source varchar(100) NOT NULL,
-	pbf_file varchar(100) NOT NULL,
-	pbf_order int DEFAULT 1,
-	pwr_uid int NOT NULL,
-	PRIMARY KEY (pbf_uid)
-);
-
-
 CREATE TABLE p_write
 (
 	pwr_uid int NOT NULL AUTO_INCREMENT,
@@ -96,12 +71,19 @@ CREATE TABLE toilet_info
 	t_uid int NOT NULL AUTO_INCREMENT,
 	t_name varchar(30) NOT NULL,
 	t_location varchar(100) NOT NULL,
+	-- 시/군/구로 구분
+	-- 
+	t_location_O varchar(100) COMMENT '시/군/구로 구분
+',
 	t_latitude double NOT NULL,
 	t_longitude double NOT NULL,
 	t_gender int DEFAULT 0,
-	t_kid int DEFAULT 0,
-	t_disabled int,
-	t_vdm int DEFAULT 0,
+	t_kid_M int DEFAULT 0,
+	t_kid_W int,
+	t_disabled_M int,
+	t_disabled_W int,
+	t_count_M int,
+	t_count_W int,
 	PRIMARY KEY (t_uid)
 );
 
@@ -132,14 +114,6 @@ CREATE TABLE t_write
 
 
 /* Create Foreign Keys */
-
-ALTER TABLE c_file
-	ADD FOREIGN KEY (cwr_uid)
-	REFERENCES c_write (cwr_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
 
 ALTER TABLE comment
 	ADD FOREIGN KEY (mb_uid)
@@ -173,14 +147,6 @@ ALTER TABLE t_write
 ;
 
 
-ALTER TABLE p_file
-	ADD FOREIGN KEY (pwr_uid)
-	REFERENCES p_write (pwr_uid)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
 ALTER TABLE t_score
 	ADD FOREIGN KEY (t_uid)
 	REFERENCES toilet_info (t_uid)
@@ -204,5 +170,11 @@ ALTER TABLE t_write
 	ON DELETE RESTRICT
 ;
 
+INSERT INTO `member`
+	(mb_id, mb_password, mb_email, `mb_emailHash`, `mb_emailSign`, mb_level)
+VALUES
+	('admin', '1234', 'aa@aa.com', 1234, true, 2),
+	('aa', 'aa', 'aa@aa.com', 1235, true, 1)
+;
+select * from member;
 
-SELECT * FROM `member`;

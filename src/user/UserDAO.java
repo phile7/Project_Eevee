@@ -66,26 +66,35 @@ public class UserDAO {
 	}
 	
 	// login
-	public int login(String uid, String pw) throws SQLException{
-		
+	public String [] login(String id, String pw) throws SQLException{
+		String cnt = "0";
+		String uid = "";
+		String level = "";
 		try {
 			
 			pstmt = conn.prepareStatement(D.SQL_SELECT_BY_IDPW);
-			pstmt.setString(1, uid);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				if(rs.getString("mb_password").equals(pw) && rs.getBoolean("mb_emailSign") == true ) {
-					
-					
-					return 1;	// 로그인 성공
+					cnt = "1";
+					uid = rs.getString("mb_uid");
+					level = rs.getString("mb_level");
+					String [] arr = {cnt, uid, level};
+					return arr; // 로그인 성공
 				} else if (!rs.getString("mb_password").equals(pw)){
-					return 0;	// 비밀번호 다름
+					String [] arr = {cnt, uid, level};
+					return arr;	// 비밀번호 다름
 				} else if(rs.getString("mb_password").equals(pw) && rs.getBoolean("mb_emailSign") == false) {
-					return -2;
+					cnt = "-2";
+					String [] arr = {cnt, uid, level};
+					return arr;
 				}
 			}
-					return -1; // 아이디가 없음
+			cnt = "-1";
+			String [] arr = {cnt, uid, level};
+					return arr; // 아이디가 없음
 		} finally {
 			close();
 		}

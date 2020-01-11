@@ -27,7 +27,11 @@ table, th, td {
 <h2>로그인 상태입니다</h2>
 <form action="logout.do">
 <input type="submit" value="로그아웃"><br>
-</form>	
+</form>
+<h2>메인페이지</h2>
+<form action="mainPage.do">
+<input type="submit" value="메인페이지"><br>
+</form>
 <hr>
 <table>
 	<tr>

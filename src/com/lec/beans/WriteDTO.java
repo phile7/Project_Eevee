@@ -15,9 +15,10 @@ public class WriteDTO {
 
 	
 	// 매개변수 받는 생성자
-	public WriteDTO(int pwr_uid, String mb_id, String subject, String content, int viewCnt, String regDate) {
+	public WriteDTO(int pwr_uid, int mb_uid, String mb_id, String subject, String content, int viewCnt, String regDate) {
 		super();
 		this.pwr_uid = pwr_uid;
+		this.mb_uid = mb_uid;
 		this.mb_id = mb_id;
 		this.subject = subject;
 		this.content = content;

@@ -73,7 +73,7 @@ if (navigator.geolocation) {
         circle.setMap(map);
         
         // context 수정
-		var url = "http://localhost:8081/togetter/location.ajax?lat=" + lat + "&lon=" + lon;
+		var url = "http://localhost:8081/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
         
         // 서울 이외의 영역 마커(제주도)
 		// var url = "http://localhost:8081/togetter/location.ajax?lat=33.491975&lon=126.490608";
@@ -146,7 +146,7 @@ if (navigator.geolocation) {
 						var t_uid = this.getTitle();
 
 						// url 수정
-						url = "http://localhost:8081/togetter/data.ajax?t_uid=" + t_uid;
+						url = "http://localhost:8081/Project_Eevee/data.ajax?t_uid=" + t_uid;
 						
 						$.ajax({
 							url : url,
@@ -164,6 +164,7 @@ if (navigator.geolocation) {
 						
 						var data = jsonObj.Datalist;
 
+						// 데이터 확인용 -> 클릭했을 때 맵 밑에 정보 나열
 						var table = "<tr></tr>";
 						for (i = 0; i < data.length; i++) {
 							table += "<tr>"; 
@@ -238,7 +239,7 @@ var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerSt
 var markers = [];
 
 </script>
-
+<table id="demoJSON"></table>
 </body>
 </html>
 

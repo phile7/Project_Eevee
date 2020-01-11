@@ -23,7 +23,7 @@ function chkSubmit(){
 <body>
 <h2>글작성</h2>
 <form name="frm" action="writeOk.do?uid=${sessionScope.uid}" method="post" onsubmit="return chkSubmit()">
-작성자:${sessionScope.idValue}<br>
+작성자:${sessionScope.id}<br>
 제목:
 <input type="text" name="subject"/><br>
 내용:<br>

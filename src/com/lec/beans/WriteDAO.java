@@ -77,6 +77,7 @@ public class WriteDAO {
 
 		while (rs.next()) {
 			int pwr_uid = rs.getInt("pwr_uid");
+			int mb_uid = rs.getInt("mb_uid");
 			String mb_id = rs.getString("mb_id");
 			String subject = rs.getString("pwr_subject");
 			String content = rs.getString("pwr_content");
@@ -88,7 +89,7 @@ public class WriteDAO {
 			String regdate = new SimpleDateFormat("yyyy-MM-dd").format(d) + " "
 					+ new SimpleDateFormat("hh:mm:ss").format(t);
 
-			WriteDTO dto = new WriteDTO(pwr_uid, mb_id, subject, content, viewCnt, regdate);
+			WriteDTO dto = new WriteDTO(pwr_uid, mb_uid, mb_id, subject, content, viewCnt, regdate);
 			list.add(dto);
 		}
 
@@ -359,4 +360,5 @@ public class WriteDAO {
 
 		return cnt;
 	}
+	
 } // end class

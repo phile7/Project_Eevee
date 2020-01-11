@@ -12,7 +12,7 @@ public interface D {
 			+ "(?, ?, ?, ?)";
 	
 	public static final String SQL_SELECT_BY_IDPW =
-			"SELECT mb_password, mb_emailSign FROM member WHERE mb_id = ?";
+			"SELECT * FROM member WHERE mb_id = ?";
 	
 	public static final String SQL_SELECT_BY_IDEMAILCK =
 			"SELECT mb_emailSign FROM member WHERE mb_id = ?";

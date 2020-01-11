@@ -71,6 +71,14 @@ function chkSubmitCommentToComment(){
 	<hr>
 	<div>${read[0].content }</div>
 	<hr>
+		<c:if
+		test="${sessionScope.uid == read[0].mb_uid or sessionScope.level == 2}">
+		<button onclick="chkDelete(${read[0].pwr_uid })">삭제하기</button>
+		<button onclick="location.href = 'update.do?uid=${read[0].pwr_uid }'">수정하기</button>
+	</c:if>
+	<button onclick="location.href = 'list.do?page=${page}'">목록보기</button>
+	<button onclick="location.href = 'write.do?uid=${sessionScope.uid}'">신규등록</button>
+	<hr>
 	<br>
 	<%
 		int cnt = 0;
@@ -123,13 +131,7 @@ function chkSubmitCommentToComment(){
 		<hr>
 	</c:forEach>
 	<br>
-	<c:if
-		test="${sessionScope.uid == read[0].mb_uid or sessionScope.level == 2}">
-		<button onclick="chkDelete(${read[0].pwr_uid })">삭제하기</button>
-		<button onclick="location.href = 'update.do?uid=${read[0].pwr_uid }'">수정하기</button>
-	</c:if>
-	<button onclick="location.href = 'list.do?page=${page}'">목록보기</button>
-	<button onclick="location.href = 'write.do?uid=${sessionScope.uid}'">신규등록</button>
+
 	<form name="frm"
 		action="comment.do?uid=${sessionScope.uid}&pwr_uid=${read[0].pwr_uid}"
 		method="post" onsubmit="return chkSubmitComment()">
