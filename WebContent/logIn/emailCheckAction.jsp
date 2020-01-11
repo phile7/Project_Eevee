@@ -13,8 +13,8 @@
 			
 			UserDAO dao = new UserDAO();
 			String userID = null;
-			if(request.getAttribute("userID") != null){
-				userID = (String)request.getAttribute("userID");
+			if(session.getAttribute("userID") != null){
+				userID = (String)session.getAttribute("userID");
 			}
 			
 			if(userID == null){%>

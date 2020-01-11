@@ -205,4 +205,4 @@ ALTER TABLE t_write
 ;
 
 
-
+SELECT * FROM `member`;

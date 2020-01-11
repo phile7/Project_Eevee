@@ -17,8 +17,8 @@
 		UserDAO dao = new UserDAO();
 		String userID = null;
 		
-		if(request.getAttribute("userID") != null){
-			userID = (String) request.getAttribute("userID");
+		if(session.getAttribute("userID") != null){
+			userID = (String) session.getAttribute("userID");
 			
 		}
 		
@@ -46,7 +46,7 @@
 	
 		dao = new UserDAO();
 		
-		String host = "http://localhost:8080/proex/";
+		String host = "http://localhost:8080/Project_Eevee/";
 		String from = "phile0403@gmail.com";
 		String to = dao.getUserEmail(userID);
 						//"phile7@naver.com";
