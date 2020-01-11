@@ -96,12 +96,19 @@ CREATE TABLE toilet_info
 	t_uid int NOT NULL AUTO_INCREMENT,
 	t_name varchar(30) NOT NULL,
 	t_location varchar(100) NOT NULL,
+	-- 시/군/구로 구분
+	-- 
+	t_location_O varchar(100) COMMENT '시/군/구로 구분
+',
 	t_latitude double NOT NULL,
 	t_longitude double NOT NULL,
 	t_gender int DEFAULT 0,
-	t_kid int DEFAULT 0,
-	t_disabled int,
-	t_vdm int DEFAULT 0,
+	t_kid_M int DEFAULT 0,
+	t_kid_W int,
+	t_disabled_M int,
+	t_disabled_W int,
+	t_count_M int,
+	t_count_W int,
 	PRIMARY KEY (t_uid)
 );
 
@@ -205,4 +212,4 @@ ALTER TABLE t_write
 ;
 
 
-SELECT * FROM `member`;
+
