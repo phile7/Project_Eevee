@@ -26,4 +26,4 @@ li{ list-style-type: none;}
 .sign #sform2 .spw {position: absolute; display: block; width: 400px; height: 30px; font-size: 25px; top:146px}
 .sign #sform2 .spw2 {position: absolute; display: block; width: 400px; height: 30px; font-size: 25px; top:234px}
 .sign #sform2 .semail {position: absolute; display: block; width: 400px; height: 30px; font-size: 25px; top:321px}
-.sign #sform2 .ssub { position: relative; display: block; width: 567px; height: 92px; top: 501px; left: -106px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; background-color: transparent; cursor: pointer}
+.sign #sform2 .ssub { position: relative; display: block; width: 567px; height: 92px; top: 501px; left: -115px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; background-color: transparent; cursor: pointer}
