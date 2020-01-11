@@ -35,6 +35,7 @@ function chkSubmit(){
 </script>
 
 <body>
+<% session.invalidate(); %>
     <div class="logo">
         <div id="garim"></div>
         <div id="garim2">
