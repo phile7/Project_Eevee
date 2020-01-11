@@ -161,6 +161,9 @@ public class WriteController extends HttpServlet {
 				viewPage = "logIn/emailCheckAction.jsp";
 				break;
 				
+		case "/GPS/Map01.do":
+			viewPage = "/GPS/Map01.jsp";
+			break;
 			
 		}
 		
