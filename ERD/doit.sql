@@ -59,7 +59,8 @@ CREATE TABLE member
 	mb_id varchar(20) NOT NULL,
 	mb_password varchar(20) NOT NULL,
 	mb_email varchar(30) NOT NULL,
-	mb_phone int NOT NULL,
+	mb_emailHash varchar(100),
+	mb_emailSign boolean default false,
 	mb_regdate datetime DEFAULT now(),
 	mb_level int NOT NULL DEFAULT 1 CHECK(mb_level >= 1 AND mb_level <= 2),
 	PRIMARY KEY (mb_uid),
@@ -203,24 +204,5 @@ ALTER TABLE t_write
 	ON DELETE RESTRICT
 ;
 
-select * from comment;
-INSERT INTO member
-	(mb_id, mb_password, mb_email, mb_phone, mb_level)
-VALUES
-	('aa', 'aa', 'aa@naver.com', 01012345678, 2),
-	('bb','bb', 'bb@naver.com', 01012345678, 1),
-	('cc', 'cc', 'cc@naver.com', 01012345678, 1),
-	('dd', 'dd', 'dd@naver.com', 01012345678, 1),
-	('ee', 'ee', 'ee@naver.com', 01012345678, 1)
-;
 
-INSERT INTO p_write
-	(pwr_subject, pwr_content, mb_uid)
-VALUES
-	('첫째글:방가요', '안녕하세요', '1'),
-	('둘째글:헤헤헤','1111', '2'),
-	('세째글:힘내세요', '7394', '3'),
-	('네째글: ... ', '9090', '4')
-;
-select * from comment, member where comment.mb_uid = member.mb_uid and co_depth in (1, 2) and co_puid = 5;
-select mb_uid, mb_level from member where mb_id = 'ee';
+

@@ -19,7 +19,7 @@
 		
 		if(request.getAttribute("userID") != null){
 			userID = (String) request.getAttribute("userID");
-			request.setAttribute("userID", userID);
+			
 		}
 		
 		if(userID == null) {

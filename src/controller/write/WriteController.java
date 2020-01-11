@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import command.write.Command;
 import command.write.CommentCommand;
 import command.write.CommentToCommentCommand;
@@ -16,7 +17,9 @@ import command.write.DeleteCommand;
 import command.write.DeleteCommentCommand;
 import command.write.FileUploadCommand;
 import command.write.ListCommand;
+import command.write.LoginCmd;
 import command.write.LoginOkCommand;
+import command.write.LoginWriteCmd;
 import command.write.SelectCommand;
 import command.write.UpdateCommand;
 import command.write.ViewCommand;
@@ -121,6 +124,44 @@ public class WriteController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "playground/deleteCommentOk.jsp";
 			break;
+		
+		case "/mainPage.do":
+			viewPage = "logIn/mainPage.jsp";
+			break;
+	
+		case "/login_1.do":
+				viewPage = "logIn/login_1.jsp";
+				break;
+		
+		case "/login_1OK.do":
+				command = new LoginCmd();
+				command.execute(request, response);
+				viewPage = "logIn/login_1OK.jsp";
+				break;
+				
+		case "/login_2.do":
+				viewPage = "logIn/login_2.jsp";
+				break;
+		
+		case "/login_3.do":
+				viewPage = "logIn/login_3.jsp";
+				break;
+				
+		case "/login_3Ok.do":
+				command = new LoginWriteCmd();
+				command.execute(request, response);
+				viewPage = "logIn/login_3Ok.jsp";
+				break;
+				
+		case "/login_sendEmail.do":
+				viewPage = "logIn/login_sendEmail.jsp";
+				break;
+				
+		case "/emailCheckAction.do":
+				viewPage = "logIn/emailCheckAction.jsp";
+				break;
+				
+			
 		}
 		
 		

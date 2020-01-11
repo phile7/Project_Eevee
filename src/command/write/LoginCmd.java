@@ -1,6 +1,6 @@
-package command.log;
+package command.write;
 
-import javax.mail.Session;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

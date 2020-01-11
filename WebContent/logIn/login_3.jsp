@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 입력</title>
-<link rel="stylesheet" href="css/login_1.css">
+<link rel="stylesheet" href="logIn/css/login_1.css">
 </head>
 
 <script>
@@ -62,5 +62,5 @@ function chkSubmit(){
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="js/login_1.js"></script>
+<script src="logIn/js/login_1.js"></script>
 </html>

@@ -1,4 +1,4 @@
-package command.log;
+package command.write;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
