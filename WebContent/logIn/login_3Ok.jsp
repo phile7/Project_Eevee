@@ -27,7 +27,6 @@
 	
 	<c:otherwise>
 		<script>
-		<% session.setAttribute("userID", request.getParameter("sid"));%>
 			alert("등록 성공! 환영합니다! 이메일 인증을 해주세요!");
 			location.href = "login_sendEmail.do";
 		</script>

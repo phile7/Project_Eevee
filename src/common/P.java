@@ -6,10 +6,8 @@ public interface P {
 	public static final String USERID = "myuser";
 	public static final String USERPW = "1234";
 
-	// 게시글 관련 쿼리문
-	public static final String SQL_WRITE_INSERT = "INSERT INTO p_write" + "(pwr_subject, pwr_content, mb_uid) "
-			+ "VALUES" + "(?, ?, ?)";
 
+	//댓글
 	public static final String SQL_COMMENT_INSERT_TO_PLAYGROUND = "INSERT INTO comment" + "(mb_uid, co_content, co_puid, co_depth) "
 			+ "VALUES" + "(?, ?, ?, 1)";
 
@@ -17,6 +15,17 @@ public interface P {
 			+ "VALUES" + "(?, ?, ?, 2)";
 	
 	public static final String SQL_COMMENT_DELETE_BY_UID = "DELETE FROM comment WHERE co_uid = ?";
+	
+	//회원가입
+	
+	public static final String SQL_SELECT_PW_FROM_ID = "select mb_password from member where mb_id = ?";
+	
+	public static final String SQL_SELECT_UID_FROM_ID = "select mb_uid, mb_level from member where mb_id = ?";
+	
+	//놀이터 게시판
+	
+	public static final String SQL_WRITE_INSERT = "INSERT INTO p_write" + "(pwr_subject, pwr_content, mb_uid) "
+			+ "VALUES" + "(?, ?, ?)";
 	
 	public static final String SQL_COMMENT_SELECT_BY_UID_AT_PLAYGROUND = "select * from comment, member where comment.mb_uid = member.mb_uid and co_depth in (1) and co_puid = ?";
 
@@ -35,8 +44,7 @@ public interface P {
 	public static final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM p_write";
 
 	public static final String SQL_SELECT_FROM_ROW = "select * from p_write, member where p_write.mb_uid = member.mb_uid ORDER BY pwr_uid DESC LIMIT ?, ?";
+	
+	
 
-	public static final String SQL_SELECT_PW_FROM_ID = "select mb_password from member where mb_id = ?";
-
-	public static final String SQL_SELECT_UID_FROM_ID = "select mb_uid, mb_level from member where mb_id = ?";
 }

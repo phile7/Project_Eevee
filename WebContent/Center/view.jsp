@@ -25,7 +25,7 @@ function chkDelete(id){
 	var r = confirm("삭제하시겠습니까?");
 	
 	if(r){
-		location.href = 'deleteOk.do?uid=' + id;
+		location.href = 'cdeleteOk.do?uid=' + id;
 	}
 }
 
@@ -34,7 +34,7 @@ function chkDeleteComment(id){
 	var r = confirm("삭제하시겠습니까?");
 	
 	if(r){
-		location.href = 'deleteCommentOk.do?uid=' + id + '&pwr_uid=' + ${read[0].pwr_uid};
+		location.href = 'cdeleteCommentOk.do?uid=' + id + '&cwr_uid=' + ${read[0].cwr_uid};
 	}
 }
 
@@ -73,11 +73,11 @@ function chkSubmitCommentToComment(){
 	<hr>
 		<c:if
 		test="${sessionScope.uid == read[0].mb_uid or sessionScope.level == 2}">
-		<button onclick="chkDelete(${read[0].pwr_uid })">삭제하기</button>
-		<button onclick="location.href = 'update.do?uid=${read[0].pwr_uid }'">수정하기</button>
+		<button onclick="chkDelete(${read[0].cwr_uid })">삭제하기</button>
+		<button onclick="location.href = 'cupdate.do?uid=${read[0].cwr_uid }'">수정하기</button>
 	</c:if>
-	<button onclick="location.href = 'list.do?page=${page}'">목록보기</button>
-	<button onclick="location.href = 'write.do?uid=${sessionScope.uid}'">신규등록</button>
+	<button onclick="location.href = 'clist.do?page=${page}'">목록보기</button>
+	<button onclick="location.href = 'cwrite.do?uid=${sessionScope.uid}'">신규등록</button>
 	<hr>
 	<br>
 	<%
@@ -86,7 +86,7 @@ function chkSubmitCommentToComment(){
 	<c:forEach var="dto" items="${comment }" varStatus="status">
 		<span>아이디 : ${dto.mb_id }</span>
 		<span>등록일 : ${dto.regDate }</span>
-		<c:if test="${dto.co_depth == 1}">
+		<c:if test="${dto.co_depth == 3}">
 			<div>내용 : ${dto.comment }</div>
 		</c:if>
 		<c:if
@@ -123,7 +123,7 @@ function chkSubmitCommentToComment(){
 		cnt++;
 		%>
 		<form name="form"
-			action="commentToComment.do?uid=${sessionScope.uid}&co_uid=${dto.co_uid}&pwr_uid=${read[0].pwr_uid}"
+			action="ccommentToComment.do?uid=${sessionScope.uid}&co_uid=${dto.co_uid}&cwr_uid=${read[0].cwr_uid}"
 			method="post" onsubmit="return chkSubmitCommentToComment()">
 			<input type="text" name="comment" style="width: 600px" /> <input
 				type="submit" value="댓글등록" />
@@ -133,7 +133,7 @@ function chkSubmitCommentToComment(){
 	<br>
 
 	<form name="frm"
-		action="comment.do?uid=${sessionScope.uid}&pwr_uid=${read[0].pwr_uid}"
+		action="ccomment.do?uid=${sessionScope.uid}&cwr_uid=${read[0].cwr_uid}"
 		method="post" onsubmit="return chkSubmitComment()">
 		<input type="text" name="comment" style="width: 600px" /> <input
 			type="submit" value="댓글등록" />

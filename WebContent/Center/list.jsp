@@ -18,7 +18,7 @@ table, th, td {
 </style>
 <!-- 페이징 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="playground/CSS/list.css"/>
+<link rel="stylesheet" type="text/css" href="center/CSS/list.css"/>
 <script src="https://kit.fontawesome.com/bb29575d31.js"></script>
 </head>
 <body>
@@ -36,25 +36,47 @@ table, th, td {
 <table>
 	<tr>
 		<th>번호</th>
+		<th>글종류</th>
 		<th>제목</th>
 		<th>작성자</th>
 		<th>조회수</th>
 		<th>등록일</th>
 	</tr>
 	<c:forEach var="dto" items="${list }" varStatus="status">
-		<tr>
-			<td>${(page - 1) * pageRows + status.index + 1 }</td>
-			<td><a href="view.do?uid=${dto.pwr_uid }&page=${page }">${dto.subject }</a></td>
-			<td>${dto.mb_id }</td>
-			<td>${dto.viewCnt }</td>
-			<td>${dto.regDate }</td>
-		</tr>
-	</c:forEach>		
+		<c:choose>
+			<c:when test="${dto.mb_level==2 }">
+				<tr>
+					<td>${(page - 1) * pageRows + status.index + 1 }</td>
+					<td>공지</td>
+					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }">${dto.subject }</a></td>
+					<td>${dto.mb_id }</td>
+					<td>${dto.viewCnt }</td>
+					<td>${dto.regDate }</td>
+				</tr>
+			</c:when>
+		</c:choose>	
+	</c:forEach>
+	<c:forEach var="dto" items="${list }" varStatus="status">
+		<c:choose>
+			<c:when test="${dto.mb_level==1 }">
+				<tr>
+					<td>${(page - 1) * pageRows + status.index + 1 }</td>
+					<td>건의</td>
+					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }">${dto.subject }</a></td>
+					<td>${dto.mb_id }</td>
+					<td>${dto.viewCnt }</td>
+					<td>${dto.regDate }</td>
+				</tr>
+			</c:when>
+		</c:choose>	
+	</c:forEach>
+
+		
 </table>
 <br>
-<button onclick="location.href='write.do?uid=${sessionScope.uid}'">신규등록</button>
+<button onclick="location.href='cwrite.do?uid=${sessionScope.uid}'">신규등록</button>
 	
-<jsp:include page="pagination.jsp">
+<jsp:include page="cpagination.jsp">
 	<jsp:param value="${writePages }" name="writePages"/>
 	<jsp:param value="${totalPage }" name="totalPage"/>
 	<jsp:param value="${page }" name="curPage"/>

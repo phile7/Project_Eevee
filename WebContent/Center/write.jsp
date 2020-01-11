@@ -22,7 +22,7 @@ function chkSubmit(){
 </script>
 <body>
 <h2>글작성</h2>
-<form name="frm" action="writeOk.do?uid=${sessionScope.uid}" method="post" onsubmit="return chkSubmit()">
+<form name="frm" action="cwriteOk.do?uid=${sessionScope.uid}" method="post" onsubmit="return chkSubmit()">
 작성자:${sessionScope.id}<br>
 제목:
 <input type="text" name="subject"/><br>
@@ -33,14 +33,14 @@ function chkSubmit(){
 		allowedContent: true,
 		width: '800px',
 		height: '400px',
-		filebrowserUploadUrl: '${pageContext.request.contextPath}/fileUpload.do'
+		filebrowserUploadUrl: '${pageContext.request.contextPath}/cfileUpload.do'
 	});
 </script>
 <br><br>
 <input type="submit" value="등록"/>
 </form>
 <br>
-<button type="button" onclick="location.href='list.do'">목록으로</button>
+<button type="button" onclick="location.href='clist.do'">목록으로</button>
 </body>
 
 </html>
