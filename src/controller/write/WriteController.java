@@ -52,7 +52,7 @@ public class WriteController extends HttpServlet {
 
 	protected void actionDo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("actionDo() 호출");
+		System.out.println("Eevee actionDo() 호출");
 
 		request.setCharacterEncoding("UTF-8");
 
@@ -112,15 +112,9 @@ public class WriteController extends HttpServlet {
 			
 		// 메인페이지
 		case "/mainPage.do":
-			viewPage = "logIn/mainPage.jsp";
-			break;
-			
-			
-		// 지도
-		case "/GPS/Map01.do":
+//			viewPage = "logIn/mainPage.jsp";
 			viewPage = "/GPS/Map01.jsp";
 			break;
-		
 			
 		// 놀이터 게시판
 		case "/list.do":

@@ -6,13 +6,8 @@
 
 -- 1번
 DROP PROCEDURE IF EXISTS get_uid_by_location;
-CREATE PROCEDURE get_uid_by_location
-(
-	in on_latitude double,
-	in on_longitude double
-)
+CREATE PROCEDURE get_uid_by_location()
 begin
-	declare cnt int;
 end;
 
 
@@ -36,8 +31,8 @@ begin
 END
 */
 
-
-
+-- 2번 까지 실행 후 테스트
+-- call get_uid_by_location(37.509976, 127.020663);
 
 
 
@@ -55,7 +50,7 @@ END;
 */
 
 -- call calc_location(37.509976, 127.020663, @cnt);
--- call get_uid_by_location(37.509976, 127.020663);
+
 
 -- 화장실 정보 갯수 
 -- select count(*) from toilet_info;

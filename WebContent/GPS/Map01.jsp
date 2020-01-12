@@ -15,10 +15,10 @@
 <title>Do It</title>
 </head>
 
-<link rel="stylesheet" href="css/map01.css">  
+<link rel="stylesheet" href="./GPS/css/map01.css">  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>	<!--  사용될 수도 있기 때문에  -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a9e74f5e39c3142a6c0f11bedb03510b"></script>		<!--  지도 API 인증키 -->
-<script src="Mapjs02.js" type="text/javascript"></script>	<!--  마커 정보 배열을 담은 JS 파일 -->
+<script src="./GPS/Mapjs02.js" type="text/javascript"></script>	<!--  마커 정보 배열을 담은 JS 파일 -->
 
 <body>
 
