@@ -5,4 +5,24 @@ a{ text-decoration: none;}
 li{ list-style-type: none;}
 
 #map {position: relative; width: 720px; height: 1300px; margin: 0 auto}
-#map #pop {position: absolute; background: url(../image/pop.jpg) center center no-repeat; width: 100%; height: 550px; bottom: 0; z-index: 5; border: 1px solid black;}
+#map #info{position: absolute; width: 100%; height: 100%;}
+#map #pop {position: absolute; background: url(../image/pop2.jpg) center center no-repeat; width: 100%; height: 550px; bottom: -600px; z-index: 2; border: 1px solid black; }
+#map #pop #demoJSON { position: absolute; width: 100%; height: 500px; z-index: 3; bottom: 50px;}
+#map #pop #demoJSON #tname { position: absolute; font-size: 35px; color: white; font-weight: bold; top: 20px; left: 50px;}
+#map #pop #demoJSON #tloca {position: absolute; font-size: 25px; color: black; left: 50px; top: 110px}
+#map #pop #demoJSON #tmc {position: absolute; background: url(../image/man.jpg) center center no-repeat; width: 49px; height: 102px; top:229px; left: 87px;}
+#map #pop #demoJSON #twc {position: absolute; background: url(../image/woman.jpg) center center no-repeat; width: 49px; height: 102px; top:229px; left: 244px;}
+#map #pop #demoJSON #tdm {position: absolute; background: url(../image/cman.jpg) center center no-repeat; width: 72px; height: 95px; top:390px; left: 76px;}
+#map #pop #demoJSON #tdw {position: absolute; background: url(../image/cwoman.jpg) center center no-repeat; width: 72px; height: 95px; top:390px; left: 232px;}
+#map #pop #score {position: absolute; background-image: url(../image/zstar.png); width: 229px; height: 37px; top: 25px; right: 50px; z-index: 3}
+#map #pop #score a {display: block; width: 100%; height: 100%;}
+#map #pop #tlist {position: absolute; width: 317px; height: 341px; border: 1px solid black; bottom: 50px; right: 50px;}
+
+#map #menubar {position: absolute; width: 100px; height: 100px; z-index: 4;}
+#map #menubar #btn1 {position: absolute; width: 100px; height: 100px; background-image: url(../image/menu2.png); z-index: 4; cursor: pointer;}
+#map #menubar #btn_bar { position: relative; width: 300px; height: 1300px; background-color: #238556; left: -300px;}
+#map #menubar #btn_bar #btn_close{ position: absolute; background-image: url("../image/clcl.png"); width: 100px; height: 100px; left: 200px; cursor: pointer;}
+#map #menubar #btn_bar #rk {position: absolute; width: 100%; height: 100px; font-size: 40px; top: 150px; text-align: center; cursor: pointer; color: white; line-height: 100px;}
+#map #menubar #btn_bar #play {position: absolute; width: 100%; height: 100px; font-size: 40px; top: 250px; text-align: center; cursor: pointer; color: white; line-height: 100px;}
+#map #menubar #btn_bar #out {position: absolute; width: 100%; height: 100px; font-size: 40px; top: 350px; text-align: center; cursor: pointer; color: white; line-height: 100px;}
+#map #menubar #btn_bar #ex {position: absolute; width: 100%; height: 100px; font-size: 40px; bottom: 0px; text-align: center; cursor: pointer; color: white; line-height: 100px;}
