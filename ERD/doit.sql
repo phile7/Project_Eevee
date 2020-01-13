@@ -177,6 +177,4 @@ VALUES
 	('aa', 'aa', 'aa@aa.com', 1235, true, 1)
 ;
 select * from member;
-SELECT * FROM t_write;
-
 

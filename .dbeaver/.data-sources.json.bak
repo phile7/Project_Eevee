@@ -44,21 +44,6 @@
 				"type": "dev",
 				"handlers": {}
 			}
-		},
-		"mariaDB-16f9a791172-ee9584cba5591ec": {
-			"provider": "mysql",
-			"driver": "mariaDB",
-			"name": "MariaDB - mydb 4",
-			"save-password": true,
-			"read-only": false,
-			"configuration": {
-				"host": "localhost",
-				"port": "3306",
-				"database": "mydb",
-				"url": "jdbc:mysql://localhost:3306/mydb",
-				"type": "dev",
-				"handlers": {}
-			}
 		}
 	},
 	"connection-types": {
