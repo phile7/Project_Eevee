@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import command.write.RankCommand;
 import command.write.Command;
 import command.write.CommentCommand;
 import command.write.CommentCommandCenter;
@@ -29,6 +30,8 @@ import command.write.UpdateCommand;
 import command.write.UpdateCommandCenter;
 import command.write.ViewCommand;
 import command.write.ViewCommandCenter;
+import command.write.WithdrawCommand;
+import command.write.WriteListCommand;
 import command.write.WriteOkCommand;
 import command.write.WriteOkCommandCenter;
 
@@ -52,7 +55,7 @@ public class WriteController extends HttpServlet {
 
 	protected void actionDo(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Eevee actionDo() 호출");
+		System.out.println("actionDo() 호출");
 
 		request.setCharacterEncoding("UTF-8");
 
@@ -108,13 +111,32 @@ public class WriteController extends HttpServlet {
 		case "/logout.do":
 			viewPage = "logIn/logout.jsp";
 			break;
-			
+		
+		// 회원 글보기
+		case "/writelist.do":
+			command = new WriteListCommand();
+			command.execute(request, response);
+			viewPage = "writelist/list.jsp";
+			break;		
+		
+		// 회원 탈퇴
+		case "/withdraw.do":
+			command = new WithdrawCommand();
+			command.execute(request, response);
+			viewPage = "withdraw/withdraw.jsp";
+			break;	
 			
 		// 메인페이지
 		case "/mainPage.do":
-//			viewPage = "logIn/mainPage.jsp";
+			viewPage = "logIn/mainPage.jsp";
+			break;
+			
+			
+		// 지도
+		case "/GPS/Map01.do":
 			viewPage = "/GPS/Map01.jsp";
 			break;
+		
 			
 		// 놀이터 게시판
 		case "/list.do":
@@ -223,6 +245,13 @@ public class WriteController extends HttpServlet {
 			viewPage = "Center/deleteCommentOk.jsp";
 			break;
 		
+		// 랭킹보기
+		case "/rlist.do":
+			command = new RankCommand();
+			command.execute(request, response);
+			viewPage = "rank/list.jsp";
+			break;	
+			
 		}
 		// 2.View(*.jsp) 선택
 

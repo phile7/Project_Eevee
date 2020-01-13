@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import common.C;
+import common.W;
 
 public class CenterDAO {
 	Connection conn;
@@ -102,10 +103,11 @@ public class CenterDAO {
 
 	// 글 목록 읽어오기
 	// SELECT
-	public CenterDTO[] select() throws SQLException {
+	public CenterDTO[] select(int mb_uid) throws SQLException {
 		CenterDTO[] arr = null;
 		try {
-			pstmt = conn.prepareStatement(C.SQL_WRITE_SELECT);
+			pstmt = conn.prepareStatement(W.SQL_WRITE_LIST_FROM_CENTER);
+			pstmt.setInt(1, mb_uid);
 			rs = pstmt.executeQuery();
 			arr = createArray(rs);
 		} finally {
@@ -336,4 +338,34 @@ public class CenterDAO {
 		return cnt;
 	}
 	
+	// 회원탈퇴시
+	// 회원 uid 의 글을 삭제하기
+	public int deleteMember(int mb_uid) throws SQLException {
+		int cnt = 0;
+
+		try {
+			pstmt = conn.prepareStatement(W.SQL_USER_WRITE_DELETE_AT_CENTER);
+			pstmt.setInt(1, mb_uid);
+			cnt = pstmt.executeUpdate();
+		} finally {
+			pstmt.close();
+		}
+
+		return cnt;
+	}
+	
+	// 회원 댓글 삭제
+	public int deleteMemberComment(int mb_uid) throws SQLException {
+		int cnt = 0;
+
+		try {
+			pstmt = conn.prepareStatement(W.SQL_USER_WRITE_DELETE_AT_COMMENT);
+			pstmt.setInt(1, mb_uid);
+			cnt = pstmt.executeUpdate();
+		} finally {
+			pstmt.close();
+		}
+
+		return cnt;
+	}
 } // end class

@@ -11,22 +11,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import common.P;
+import common.T;
 import common.W;
 
-public class WriteDAO {
+public class ToiletWriteDAO {
 	Connection conn;
 	PreparedStatement pstmt;
 	Statement stmt;
 	ResultSet rs;
 
 	// DAO 객체가 생성될때 Connection 도 생성된다!
-	public WriteDAO() {
+	public ToiletWriteDAO() {
 
 		try {
-			Class.forName(P.DRIVER);
-			conn = DriverManager.getConnection(P.URL, P.USERID, P.USERPW);
-			System.out.println("WriteDAO 객체 생성, 데이터베이스 연결");
+			Class.forName(T.DRIVER);
+			conn = DriverManager.getConnection(T.URL, T.USERID, T.USERPW);
+			System.out.println("CenterDAO 객체 생성, 데이터베이스 연결");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -48,23 +48,60 @@ public class WriteDAO {
 
 	// 새글 작성 <-- 제목, 내용, mb_uid
 	// INSERT
-	public int insert(WriteDTO dto) throws SQLException {
+	public int insert(ToiletWriteDTO dto) throws SQLException {
 		String subject = dto.getSubject();
 		String content = dto.getContent();
 		int mb_uid = dto.getMb_uid();
+		int t_uid = dto.getT_uid();
+		double twr_score = dto.getTwr_score();
 
-		return this.insert(subject, content, mb_uid);
+		return this.insert(subject, content, mb_uid, twr_score, t_uid);
 	}
 
-	public int insert(String subject, String content, int mb_uid) throws SQLException {
+	public int insert(String subject, String content, int mb_uid, double twr_score, int t_uid) throws SQLException {
 		int cnt = 0;
-
+		int ts_uid = 0;
 		try {
-			pstmt = conn.prepareStatement(P.SQL_WRITE_INSERT);
+			
+			pstmt = conn.prepareStatement(T.SQL_SCORE_MAKE_DUMMY);
+			pstmt.setInt(1, t_uid);
+			rs = pstmt.executeQuery();
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(T.SQL_SCORE_COUNT);
+			rs = pstmt.executeQuery();
+			rs.next(); // 첫번째 행의
+			ts_uid = rs.getInt(1); // 첫번째 컬럼
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(T.SQL_WRITE_INSERT);
 			pstmt.setString(1, subject);
 			pstmt.setString(2, content);
 			pstmt.setInt(3, mb_uid);
+			pstmt.setDouble(4, twr_score);
+			pstmt.setInt(5, t_uid);
+			pstmt.setInt(6, ts_uid);
 			cnt = pstmt.executeUpdate();
+			pstmt.close();			
+			
+			pstmt = conn.prepareStatement(T.SQL_SCORE_SELECT);
+			pstmt.setInt(1, t_uid);
+			rs = pstmt.executeQuery();
+			double totalScore = 0.0;
+			int chk = 0;
+			while(rs.next()) {
+				chk++;
+				totalScore += rs.getDouble("twr_score");
+			}
+			double ts_score = totalScore/chk;
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(T.SQL_SCORE_UPDATE);
+			pstmt.setDouble(1, ts_score);
+			pstmt.setInt(2, t_uid);
+			pstmt.setInt(3, ts_uid);
+			pstmt.executeUpdate();
+			
 		} finally {
 			close();
 		}
@@ -73,39 +110,43 @@ public class WriteDAO {
 	}
 
 	// ResultSet --> DTO 배열로 변환 리턴
-	public WriteDTO[] createArray(ResultSet rs) throws SQLException {
-		ArrayList<WriteDTO> list = new ArrayList<WriteDTO>();
+	public ToiletWriteDTO[] createArray(ResultSet rs) throws SQLException {
+		ArrayList<ToiletWriteDTO> list = new ArrayList<ToiletWriteDTO>();
 
 		while (rs.next()) {
-			int pwr_uid = rs.getInt("pwr_uid");
+			int twr_uid = rs.getInt("twr_uid");
 			int mb_uid = rs.getInt("mb_uid");
+			int t_uid = rs.getInt("t_uid");
+			int ts_uid = rs.getInt("ts_uid");
+			double twr_score = rs.getDouble("twr_score");
+			double ts_score = rs.getDouble("ts_score");
 			String mb_id = rs.getString("mb_id");
-			String subject = rs.getString("pwr_subject");
-			String content = rs.getString("pwr_content");
+			String subject = rs.getString("twr_subject");
+			String content = rs.getString("twr_content");
 			if (content == null)
 				content = "";
-			int viewCnt = rs.getInt("pwr_viewcnt");
-			Date d = rs.getDate("pwr_regdate");
-			Time t = rs.getTime("pwr_regdate");
+			int viewCnt = rs.getInt("twr_viewcnt");
+			Date d = rs.getDate("twr_regdate");
+			Time t = rs.getTime("twr_regdate");
 			String regdate = new SimpleDateFormat("yyyy-MM-dd").format(d) + " "
 					+ new SimpleDateFormat("hh:mm:ss").format(t);
 
-			WriteDTO dto = new WriteDTO(pwr_uid, mb_uid, mb_id, subject, content, viewCnt, regdate);
+			ToiletWriteDTO dto = new ToiletWriteDTO(twr_uid, mb_uid, t_uid, ts_uid, twr_score, ts_score, mb_id, subject, content, viewCnt, regdate);
 			list.add(dto);
 		}
 
 		int size = list.size();
-		WriteDTO[] arr = new WriteDTO[size];
+		ToiletWriteDTO[] arr = new ToiletWriteDTO[size];
 		list.toArray(arr);
 		return arr;
 	}
 
 	// 글 목록 읽어오기
 	// SELECT
-	public WriteDTO[] select(int mb_uid) throws SQLException {
-		WriteDTO[] arr = null;
+	public ToiletWriteDTO[] select(int mb_uid) throws SQLException {
+		ToiletWriteDTO[] arr = null;
 		try {
-			pstmt = conn.prepareStatement(W.SQL_WRITE_LIST_FROM_PLAYGROUND);
+			pstmt = conn.prepareStatement(W.SQL_WRITE_LIST_FROM_TOILET);
 			pstmt.setInt(1, mb_uid);
 			rs = pstmt.executeQuery();
 			arr = createArray(rs);
@@ -116,12 +157,13 @@ public class WriteDAO {
 	}
 
 	// 특정 uid 의 글만 읽어오기
-	public WriteDTO[] selectByUid(int pwr_uid) throws SQLException {
-		WriteDTO[] arr = null;
+	public ToiletWriteDTO[] selectByUid(int t_uid, int twr_uid) throws SQLException {
+		ToiletWriteDTO[] arr = null;
 
 		try {
-			pstmt = conn.prepareStatement(P.SQL_WRITE_SELECT_BY_UID);
-			pstmt.setInt(1, pwr_uid);
+			pstmt = conn.prepareStatement(T.SQL_WRITE_SELECT_BY_UID);
+			pstmt.setInt(1, t_uid);
+			pstmt.setInt(2, twr_uid);
 			rs = pstmt.executeQuery();
 			arr = createArray(rs);
 		} finally {
@@ -133,22 +175,23 @@ public class WriteDAO {
 
 	// 특정 uid 의 글만 읽어오기 + 조회수 증가
 	// SELECT, UPDATE
-	public WriteDTO[] readByUid(int pwr_uid) throws SQLException {
+	public ToiletWriteDTO[] readByUid(int t_uid, int twr_uid) throws SQLException {
 		int cnt = 0;
-		WriteDTO arr[] = null;
+		ToiletWriteDTO arr[] = null;
 
 		try {
 			// 트랜잭션 처리
 			conn.setAutoCommit(false);
 
 			// 쿼리문(들) 실행
-			pstmt = conn.prepareStatement(P.SQL_WRITE_INC_VIEWCNT);
-			pstmt.setInt(1, pwr_uid);
+			pstmt = conn.prepareStatement(T.SQL_WRITE_INC_VIEWCNT);
+			pstmt.setInt(1, twr_uid);
 			cnt = pstmt.executeUpdate();
 
 			pstmt.close();
-			pstmt = conn.prepareStatement(P.SQL_WRITE_SELECT_BY_UID);
-			pstmt.setInt(1, pwr_uid);
+			pstmt = conn.prepareStatement(T.SQL_WRITE_SELECT_BY_UID);
+			pstmt.setInt(1, t_uid);
+			pstmt.setInt(2, twr_uid);
 			rs = pstmt.executeQuery();
 
 			arr = createArray(rs);
@@ -166,13 +209,44 @@ public class WriteDAO {
 
 	// 특정 uid 의 글을 삭제하기
 	// DELETE
-	public int deleteByUid(int pwr_uid) throws SQLException {
+	public int deleteByUid(int twr_uid, int t_uid) throws SQLException {
 		int cnt = 0;
-
+		int ts_uid = 0;
+		
 		try {
-			pstmt = conn.prepareStatement(P.SQL_WRITE_DELETE_BY_UID);
-			pstmt.setInt(1, pwr_uid);
+			pstmt = conn.prepareStatement(T.SQL_WRITE_DELETE_BY_UID);
+			pstmt.setInt(1, twr_uid);
 			cnt = pstmt.executeUpdate();
+			
+			pstmt = conn.prepareStatement(T.SQL_SCORE_MAKE_DUMMY);
+			pstmt.setInt(1, t_uid);
+			rs = pstmt.executeQuery();
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(T.SQL_SCORE_COUNT);
+			rs = pstmt.executeQuery();
+			rs.next(); // 첫번째 행의
+			ts_uid = rs.getInt(1); // 첫번째 컬럼
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(T.SQL_SCORE_SELECT);
+			pstmt.setInt(1, t_uid);
+			rs = pstmt.executeQuery();
+			double totalScore = 0.0;
+			int chk = 0;
+			while(rs.next()) {
+				chk++;
+				totalScore += rs.getDouble("twr_score");
+			}
+			double ts_score = totalScore/chk;
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(T.SQL_SCORE_UPDATE);
+			pstmt.setDouble(1, ts_score);
+			pstmt.setInt(2, t_uid);
+			pstmt.setInt(3, ts_uid);
+			pstmt.executeUpdate();
+			
 		} finally {
 			close();
 		}
@@ -182,13 +256,14 @@ public class WriteDAO {
 
 	// 특정 uid 의 글을 수정하기 --> 제목, 내용
 	// UPDATE
-	public int update(int pwr_uid, String subject, String content) throws SQLException {
+	public int update(int twr_uid, String subject, Double twr_score, String content) throws SQLException {
 		int cnt = 0;
 		try {
-			pstmt = conn.prepareStatement(P.SQL_WRITE_UPDATE);
+			pstmt = conn.prepareStatement(T.SQL_WRITE_UPDATE);
 			pstmt.setString(1, subject);
 			pstmt.setString(2, content);
-			pstmt.setInt(3, pwr_uid);
+			pstmt.setDouble(3, twr_score);
+			pstmt.setInt(4, twr_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();
@@ -200,12 +275,13 @@ public class WriteDAO {
 	// 페이징
 	
 	// 몇번째 페이지부터 몇개의 rows를 select
-	public WriteDTO [] selectFromRow(int from, int rows) throws SQLException {
-		WriteDTO [] arr = null;
+	public ToiletWriteDTO [] selectFromRow(int t_uid, int from, int rows) throws SQLException {
+		ToiletWriteDTO [] arr = null;
 		try {
-			pstmt = conn.prepareStatement(P.SQL_SELECT_FROM_ROW);
-			pstmt.setInt(1, from);
-			pstmt.setInt(2, rows);
+			pstmt = conn.prepareStatement(T.SQL_SELECT_FROM_ROW);
+			pstmt.setInt(1, t_uid);
+			pstmt.setInt(2, from);
+			pstmt.setInt(3, rows);
 			rs = pstmt.executeQuery();
 			arr = createArray(rs);
 		} finally {
@@ -219,7 +295,7 @@ public class WriteDAO {
 		int cnt = 0;
 		
 		try {
-			pstmt = conn.prepareStatement(P.SQL_COUNT_ALL);
+			pstmt = conn.prepareStatement(T.SQL_COUNT_ALL);
 			rs = pstmt.executeQuery();
 			rs.next(); // 첫번째 행의
 			cnt = rs.getInt(1); // 첫번째 컬럼
@@ -230,44 +306,17 @@ public class WriteDAO {
 		return cnt;
 	}
 	
-	//로그인 확인
-	public String [] loginCheck(String id, String pw) throws SQLException {
-		String uid = "";
-		String level = "";
-		try {
-			pstmt = conn.prepareStatement(P.SQL_SELECT_PW_FROM_ID);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			rs.next(); // 첫번째 행의
-			pw = rs.getString(1); // 첫번째 컬럼		
-			pstmt.close();
-			
-			//해당 아이디 uid, 관리자권한 가져오기
-			pstmt = conn.prepareStatement(P.SQL_SELECT_UID_FROM_ID);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			rs.next();
-			uid = rs.getString(1);
-			level = rs.getString(2);
-		} finally {
-			close();
-		}
-		
-		String [] arr = {pw, uid, level};
-		return arr;
-	}
-	
 	// 댓글
 	
 	// 댓글등록
-	public int insertComment(int mb_uid, String comment, int pwr_uid) throws SQLException {
+	public int insertComment(int mb_uid, String comment, int twr_uid) throws SQLException {
 		int cnt = 0;
 
 		try {
-			pstmt = conn.prepareStatement(P.SQL_COMMENT_INSERT_TO_PLAYGROUND);
+			pstmt = conn.prepareStatement(T.SQL_COMMENT_INSERT_TO_TOILET);
 			pstmt.setInt(1, mb_uid);
 			pstmt.setString(2, comment);
-			pstmt.setInt(3, pwr_uid);
+			pstmt.setInt(3, twr_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
 			close();
@@ -303,12 +352,12 @@ public class WriteDAO {
 		return arr;
 	}
 	
-	public CommentDTO[] commentRead(int pwr_uid) throws SQLException {
+	public CommentDTO[] commentRead(int twr_uid) throws SQLException {
 		CommentDTO[] arr = null;
 
 		try {
-			pstmt = conn.prepareStatement(P.SQL_COMMENT_SELECT_BY_UID_AT_PLAYGROUND);
-			pstmt.setInt(1, pwr_uid);
+			pstmt = conn.prepareStatement(T.SQL_COMMENT_SELECT_BY_UID_AT_TOILET);
+			pstmt.setInt(1, twr_uid);
 			rs = pstmt.executeQuery();
 			arr = createCommentArray(rs);
 		} finally {
@@ -318,12 +367,12 @@ public class WriteDAO {
 		return arr;
 	}
 	
-	public CommentDTO[] commentToCommentRead(int pwr_uid) throws SQLException {
+	public CommentDTO[] commentToCommentRead(int twr_uid) throws SQLException {
 		CommentDTO[] arr = null;
 
 		try {
-			pstmt = conn.prepareStatement(P.SQL_COMMENT_TO_COMMENT_SELECT_BY_UID_AT_PLAYGROUND);
-			pstmt.setInt(1, pwr_uid);
+			pstmt = conn.prepareStatement(T.SQL_COMMENT_TO_COMMENT_SELECT_BY_UID_AT_TOILET);
+			pstmt.setInt(1, twr_uid);
 			rs = pstmt.executeQuery();
 			arr = createCommentArray(rs);
 		} finally {
@@ -338,7 +387,7 @@ public class WriteDAO {
 		int cnt = 0;
 
 		try {
-			pstmt = conn.prepareStatement(P.SQL_COMMENT_DELETE_BY_UID);
+			pstmt = conn.prepareStatement(T.SQL_COMMENT_DELETE_BY_UID);
 			pstmt.setInt(1, co_uid);
 			cnt = pstmt.executeUpdate();
 		} finally {
@@ -352,7 +401,7 @@ public class WriteDAO {
 		int cnt = 0;
 
 		try {
-			pstmt = conn.prepareStatement(P.SQL_COMMENT_TO_COMMENT_INSERT_TO_PLAYGROUND);
+			pstmt = conn.prepareStatement(T.SQL_COMMENT_TO_COMMENT_INSERT_TO_TOILET);
 			pstmt.setInt(1, mb_uid);
 			pstmt.setString(2, comment);
 			pstmt.setInt(3, co_uid);
@@ -363,33 +412,22 @@ public class WriteDAO {
 
 		return cnt;
 	}
-	//회원 탈퇴
-	// 회원 uid 의 글을 삭제하기
+	// 회원탈퇴시
+	// DELETE
 	public int deleteMember(int mb_uid) throws SQLException {
 		int cnt = 0;
-
+		
 		try {
-			pstmt = conn.prepareStatement(W.SQL_USER_WRITE_DELETE_AT_PLAYGROUND);
+			
+			pstmt = conn.prepareStatement(W.SQL_USER_WRITE_DELETE_AT_TOILET);
 			pstmt.setInt(1, mb_uid);
 			cnt = pstmt.executeUpdate();
+			
 		} finally {
 			pstmt.close();
 		}
 
 		return cnt;
-	}	
+	}
 	
-	public int deleteMemberInfo(int mb_uid) throws SQLException {
-		int cnt = 0;
-
-		try {
-			pstmt = conn.prepareStatement(W.SQL_USER_INFO_DELETE);
-			pstmt.setInt(1, mb_uid);
-			cnt = pstmt.executeUpdate();
-		} finally {
-			close();
-		}
-
-		return cnt;
-	}	
-} // end class
+}
