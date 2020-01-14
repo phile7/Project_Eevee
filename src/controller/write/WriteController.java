@@ -128,8 +128,7 @@ public class WriteController extends HttpServlet {
 			
 		// 메인페이지
 		case "/mainPage.do":
-			//viewPage = "GPS/Map01.jsp";
-			viewPage = "logIn/mainPage.jsp";
+			viewPage = "GPS/Map01.jsp";
 			break;
 			
 			
