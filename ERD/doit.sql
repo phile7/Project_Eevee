@@ -170,11 +170,5 @@ ALTER TABLE t_write
 	ON DELETE RESTRICT
 ;
 
-INSERT INTO `member`
-	(mb_id, mb_password, mb_email, `mb_emailHash`, `mb_emailSign`, mb_level)
-VALUES
-	('admin', '1234', 'aa@aa.com', 1234, true, 2),
-	('aa', 'aa', 'aa@aa.com', 1235, true, 1)
-;
-select * from member;
+
 

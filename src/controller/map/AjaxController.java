@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.map.AjaxListCommand;
 import command.map.Command;
+import command.map.ContentDataCommand;
 import command.map.DataCommand;
 import command.map.UidDataCommand;
 
@@ -41,6 +42,10 @@ public class AjaxController extends HttpServlet {
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		
+		System.out.println("uri: " + uri);
+		System.out.println("conPath: " + conPath);
+		System.out.println("com: " + com);
+		
 		switch(com) {
 		case "/data.ajax":   // 글 목록 AJAX 요청
 			new DataCommand().execute(request, response);
@@ -48,6 +53,9 @@ public class AjaxController extends HttpServlet {
 			break;
 		case "/location.ajax":
 			new UidDataCommand().execute(request, response);
+			break;
+		case "/content.ajax":
+			new ContentDataCommand().execute(request, response);
 			break;
 		}
 	

@@ -17,9 +17,10 @@
 
 <link rel="stylesheet" href="../GPS/css/map01.css">  
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a9e74f5e39c3142a6c0f11bedb03510b"></script>		<!--  지도 API 인증키 -->
+<script src="./Mapjs02.js" type="text/javascript"></script>	<!--  마커 정보 배열을 담은 JS 파일 -->
 
 <body>
-
+<div id="t_uid"></div>
 <div id="map">
 		<div id="menubar">
 				<div id="btn1"></div>
@@ -44,7 +45,30 @@
 	
 </div>	<!-- 지도 div -->
 
+
+
 <script>
+
+
+// Wait for device API libraries to load
+//
+//document.addEventListener("deviceready", onDeviceReady, false);
+
+var watchID = null;
+
+// device APIs are available
+//
+/*
+function onDeviceReady() {
+    // Throw an error if no update is received every 30 seconds
+    var options = { timeout: 30000 };
+    watchID = navigator.geolocation.watchPosition(onSuccess, onError, options);
+}
+
+*/
+
+
+
 
 var uid = [];
 
@@ -62,6 +86,8 @@ if (navigator.geolocation) {
     
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function(position) {
+	//function onSuccess(position){
+    //watchID = navigator.geolocation.watchPosition(function(position) {
         
         var lat = position.coords.latitude, // 위도
             lon = position.coords.longitude; // 경도
@@ -80,7 +106,7 @@ if (navigator.geolocation) {
             strokeOpacity:  0, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
             strokeStyle: 'dashed', // 선의 스타일 입니다
             fillColor: '#CFE7FF', // 채우기 색깔입니다
-            fillOpacity: 0.7  // 채우기 불투명도 입니다   
+            fillOpacity: 0.3  // 채우기 불투명도 입니다   
         }); 
 
         // 지도에 원을 표시합니다 
@@ -89,7 +115,7 @@ if (navigator.geolocation) {
         // context 수정
 		var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
         
-        // 서울 이외의 영역 마커(제주도)
+        // 서울 이외의 영역 마커(제주도)(테스트용)
 		// var url = "http://localhost:8081/togetter/location.ajax?lat=33.491975&lon=126.490608";
 		
         // 아무마커도 찍히지 않는 위치 (테스트용)
@@ -149,7 +175,8 @@ if (navigator.geolocation) {
 						map : map, // 마커를 표시할 지도
 						position : newPositions[i].latlng, // 마커를 표시할 위치
 						title : newPositions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-						image : markerImage // 마커 이미지 
+						image : markerImage, // 마커 이미지 
+						zIndex : 4
 					});
 					
 					// 마커 배열 생성 메서드
@@ -168,9 +195,50 @@ if (navigator.geolocation) {
 							cache : false,
 							dataType: "json",
 							success : function(data, status){
-								if(status == "success") parseJSON(data);
+								if(status == "success") {
+									parseJSON(data);
+									scoreRequest(t_uid);
+								}
 							}
 						});
+						
+						
+						// 리뷰 가져오는 ajax부분 수정
+						url = "http://localhost:8080/Project_Eevee/content.ajax?t_uid=" + t_uid;
+						
+						$.ajax({
+							url : url,
+							type : "GET",
+							cache : false,
+							dataType: "json",
+							success : function(data, status){
+								if(status == "success") {
+									parseCommentJSON(data);
+								}
+							}
+						});
+						
+						function parseCommentJSON(data){
+							
+							contents = data.twr_content;
+							var div = "";
+							
+							for (var i = 0; i < contents.length; i++) {
+								div += contents[i].twr_content;
+							}
+							
+							$("#tlist").html(div);
+						};
+						
+						
+						
+						function scoreRequest(t_uid){
+					        $("#score a").attr({
+								// url 수정 가능
+					        	"href" : "http://localhost:8080/Project_Eevee/write.tdo?t_uid=" + t_uid
+					        });
+						};
+						
 					
 					});
 					
@@ -248,7 +316,8 @@ if (navigator.geolocation) {
     	};
             
       });
-    
+
+   
 } else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
     
     var locPosition = new kakao.maps.LatLng(33.450701, 126.570667);
@@ -270,7 +339,7 @@ function displayMarker(locPosition) {
 }    
 
 // 마커 이미지의 이미지 주소입니다
-var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+var imageSrc = "image/marker.png";
 
 // 마커 이미지 테스트
 // var imageSrc = "../IMG/markerEX.png";
@@ -281,7 +350,7 @@ var markers = [];
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>	<!--  사용될 수도 있기 때문에  -->
-<script src="./GPS/Mapjs02.js" type="text/javascript"></script>	<!--  마커 정보 배열을 담은 JS 파일 -->
+
 <script src="../GPS/js/gps.js"></script>
 </html>
 
