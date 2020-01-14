@@ -12,7 +12,7 @@
 	<c:otherwise>
 		<script>
 			alert("등록 성공");
-			location.href = "view.tdo?t_uid="+${t_uid}+"&uid="+${twr_uid}";
+			location.href = "view.tdo?t_uid="+${t_uid}+"&uid="+${twr_uid};
 		</script>
 	</c:otherwise>
 </c:choose>

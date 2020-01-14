@@ -85,8 +85,8 @@ function chkSubmitCommentToComment(){
 	<%
 		int cnt = 0;
 	%>
-	<div class="CommentDiv">
 	<c:forEach var="dto" items="${comment }" varStatus="status">
+	<div class="CommentDiv">
 		<p class="p5">${dto.mb_id }</p>
 		<p class="p6">${dto.regDate }</p>
 		<c:if test="${dto.co_depth == 3}">
@@ -162,7 +162,7 @@ function chkSubmitCommentToComment(){
 				<tr class="KingTr">
 					<td>${(page - 1) * pageRows + status.index + 1 }</td>
 					<td>공지</td>
-					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }"; onclick="color()"; class="${(page - 1) * pageRows + status.index + 1 }";>${dto.subject }</a></td>
+					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }" onclick="color()" class="${(page - 1) * pageRows + status.index + 1 }">${dto.subject }</a></td>
 					<td>${dto.mb_id }</td>
 					<td>${dto.viewCnt }</td>
 					<td>${dto.regDate }</td>
@@ -176,7 +176,7 @@ function chkSubmitCommentToComment(){
 				<tr class="SubTr">
 					<td>${(page - 1) * pageRows + status.index + 1 }</td>
 					<td>건의</td>
-					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }"; onclick="color()"; class="${(page - 1) * pageRows + status.index + 1 }";>${dto.subject }</a></td>
+					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }" onclick="color()" class="${(page - 1) * pageRows + status.index + 1 }">${dto.subject }</a></td>
 					<td>${dto.mb_id }</td>
 					<td>${dto.viewCnt }</td>
 					<td>${dto.regDate }</td>
