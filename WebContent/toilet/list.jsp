@@ -54,9 +54,21 @@ table, th, td {
 	</c:forEach>		
 </table>
 <br>
-<c:if test="${sessionScope.uid != read[0].mb_uid or sessionScope.level == 2}">
-	<button onclick="location.href='write.tdo?uid=${sessionScope.uid}&t_uid=${t_uid}'">신규등록</button>
-</c:if>
+
+<button id="newWrite" onclick="location.href='write.tdo?uid=${sessionScope.uid}&t_uid=${t_uid}'">신규등록</button>
+
+<c:set var="loop_flag" value="false" />
+<c:forEach var="array" items="${list }" varStatus="status">
+    <c:if test="${not loop_flag }">
+		<c:if test="${sessionScope.uid == array.mb_uid}">
+			<script>
+			$("#newWrite").css('display', 'none');
+			</script>
+			<c:set var="loop_flag" value="true" />
+		</c:if>
+    </c:if>
+</c:forEach>
+	
 	
 <jsp:include page="pagination.jsp">
 	<jsp:param value="${writePages }" name="writePages"/>
