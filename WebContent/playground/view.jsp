@@ -18,6 +18,90 @@
 <head>
 <meta charset="UTF-8">
 <title>읽기 ${read[0].subject }</title>
+<script src="https://kit.fontawesome.com/129bd244d8.js" crossorigin="anonymous"></script>
+<style type="text/css">
+.container {
+	width: 720px;
+	height: 1300px;
+	margin: 0 auto;
+}
+
+*{
+font-size: 18px;}
+
+.board{
+background-color: #238556;
+color: white;
+text-align: center;
+font-size: 20px;
+padding: 8px;
+font-weight: bold;
+}
+
+.title{background: #DDDDDD; padding: 8px;}
+
+.subject{font-weight: bold;}
+
+.mb_id{
+	font-weight: bold;
+	color: #238556;
+}
+
+.tab{
+display: inline-block;
+margin-left: 10px;}
+
+.comment{
+	background-color: #EEEEEE;
+	border-radius: 10px;
+	padding: 3px 15px;
+	margin: 5px 0px;
+}
+
+.commenter{
+	font-weight: bold;
+}
+
+.deletecomment{
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden; 
+    color: red;
+}
+
+.buttons{
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    float: right;
+    color: #238556;
+}
+
+.clear{clear: both;}
+
+.commentinput{
+	border: none;
+	border-bottom: 1px solid #EEEEEE;
+	margin: 0px auto;
+}
+
+.fa-replyd{
+	color: #238556;
+}
+
+.replybtn{
+	border:none;
+	background:none;
+}
+
+#reply{
+	size: 50px;
+}
+</style>
 </head>
 <script>
 function chkDelete(id){
@@ -60,39 +144,41 @@ function chkSubmitCommentToComment(){
 	return true;
 }
 </script>
-<body>
-	<h2>읽기 ${read[0].subject }</h2>
-	<br> 작성자 : ${read[0].mb_id }
-	<br> 제목: ${read[0].subject }
-	<br> 등록일: ${read[0].regDate }
-	<br> 조회수: ${read[0].viewCnt }
-	<br> 내용:
-	<br>
-	<hr>
+<body>  
+<div class="container"> 
+	<div class="board">놀이터</div>
+	<div class="title">
+		<span class="subject">${read[0].subject }</span>
+		<br>
+		<span class="mb_id">${read[0].mb_id }</span><span class="tab"></span>	|<span class="tab"></span>
+		${read[0].viewCnt } <span class="tab"></span>|<span class="tab"></span>	
+		${read[0].regDate }
+	</div>
 	<div>${read[0].content }</div>
-	<hr>
 		<c:if
 		test="${sessionScope.uid == read[0].mb_uid or sessionScope.level == 2}">
-		<button onclick="chkDelete(${read[0].pwr_uid })">삭제하기</button>
-		<button onclick="location.href = 'update.do?uid=${read[0].pwr_uid }'">수정하기</button>
+		<button class="buttons" onclick="chkDelete(${read[0].pwr_uid })">삭제하기</button>
+		<button class="buttons" onclick="location.href = 'update.do?uid=${read[0].pwr_uid }'">수정하기</button>
 	</c:if>
-	<button onclick="location.href = 'list.do?page=${page}'">목록보기</button>
-	<button onclick="location.href = 'write.do?uid=${sessionScope.uid}'">신규등록</button>
+	<button class="buttons" onclick="location.href = 'list.do?page=${page}'">목록보기</button>
+	<button class="buttons" onclick="location.href = 'write.do?uid=${sessionScope.uid}'">신규등록</button>
+	<div class="clear"></div>
 	<hr>
-	<br>
 	<%
 		int cnt = 0;
 	%>
 	<c:forEach var="dto" items="${comment }" varStatus="status">
-		<span>아이디 : ${dto.mb_id }</span>
-		<span>등록일 : ${dto.regDate }</span>
-		<c:if test="${dto.co_depth == 1}">
-			<div>내용 : ${dto.comment }</div>
-		</c:if>
-		<c:if
-			test="${sessionScope.uid == dto.mb_uid or sessionScope.level == 2}">
-			<button onclick="chkDeleteComment(${dto.co_uid })">삭제하기</button>
-		</c:if><br>
+		<div class="comment"> 
+			<span class="commenter">${dto.mb_id }</span><span class="tab"></span>|<span class="tab"></span>
+			<span>${dto.regDate }</span>
+			<c:if test="${dto.co_depth == 1}">
+			</c:if>
+			<c:if test="${sessionScope.uid == dto.mb_uid or sessionScope.level == 2}">
+			<button class="deletecomment" onclick="chkDeleteComment(${dto.co_uid })">삭제</button>
+			</c:if>
+			<div>${dto.comment }</div>
+		</div> 
+		<div class="clear"></div>
 		<%
 		String loginId = (String)session.getAttribute("id");
 		String idLevel = (String)session.getAttribute("level");
@@ -109,35 +195,39 @@ function chkSubmitCommentToComment(){
 				String regDate = commentToComment[j].getRegDate();
 				String commentValue = commentToComment[j].getComment();
 		%>
-				<span>아이디 : <%=mb_id %></span>
-				<span>등록일 : <%=regDate %></span>
-				<div>내용 : <%=commentValue %></div>
+			<div class="comment">
+				<span class="commenter"><%=mb_id %></span> <span class="tab"></span>|<span class="tab"></span>
+				<span><%=regDate %></span>
 		<%
 				if(loginId.equals(mb_id) || idLevel.equals("2")) {
 		%>
-					<div><button onclick="chkDeleteComment(${dto.co_uid })">삭제하기</button></div>
+					<button class="deletecomment" onclick="chkDeleteComment(${dto.co_uid })">삭제</button>
+				<div><%=commentValue %></div>
+			</div>
 		<%
 				}
 			}
 		}
 		cnt++;
 		%>
-		<form name="form"
+		<form class="commentsection" name="form" 
 			action="commentToComment.do?uid=${sessionScope.uid}&co_uid=${dto.co_uid}&pwr_uid=${read[0].pwr_uid}"
 			method="post" onsubmit="return chkSubmitCommentToComment()">
-			<input type="text" name="comment" style="width: 600px" /> <input
-				type="submit" value="댓글등록" />
+			<input class="commentinput" type="text" name="comment" style="width: 670px" /> <button class="replybtn"
+				type="submit"><i class="fab fa-replyd fa-lg"></i></button>				
 		</form>
 		<hr>
 	</c:forEach>
-	<br>
 
 	<form name="frm"
 		action="comment.do?uid=${sessionScope.uid}&pwr_uid=${read[0].pwr_uid}"
 		method="post" onsubmit="return chkSubmitComment()">
-		<input type="text" name="comment" style="width: 600px" /> <input
-			type="submit" value="댓글등록" />
+		<input class="commentinput" type="text" name="comment" style="width: 670px" /> <button class="replybtn"
+				type="submit"><i class="fab fa-replyd fa-lg"></i></button>				
 	</form>
+	<hr>
+	
+</div>
 </body>
 		</html>
 
