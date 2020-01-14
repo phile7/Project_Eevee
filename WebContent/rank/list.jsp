@@ -8,50 +8,48 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>글 목록</title>
-<style>
-table {width: 100%;}
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-</style>
+<title>랭킹</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="rank/CSS/rank.css"/>
+
 </head>
-<body>
-<h2>리스트</h2>
-<hr>
-<h2>로그인 상태입니다</h2>
-<form action="logout.do">
-<input type="submit" value="로그아웃"><br>
-</form>
-<h2>메인페이지</h2>
+
+<body style="width: 720px; height: 1300px; position: relative; margin: auto;">
+<div class="MainDiv"></div>
 <form action="mainPage.do">
-<input type="submit" value="메인페이지"><br>
+<input type="submit" value="" class="MainPageButton">
 </form>
-<hr>
-<table>
-	<tr>
-		<th>순위</th>
-		<th>이름</th>
-		<th>주소</th>
-		<th>상세주소</th>
-		<th>평점</th>
-	</tr>
-	<c:forEach var="dto" items="${list }" varStatus="status">
-		<tr>
-			<td>${status.count}</td>
-			<td>${dto.t_name }</td>
-			<td>${dto.t_location }</td>
-			<td>${dto.t_location_O }</td>
-			<td>${dto.ts_score }</td>
-			<td style="display:hidden"></td>
-		</tr>
-	</c:forEach>		
-</table>
-<br>
+
+   <c:forEach var="dto" items="${list }" begin="0" end="2" varStatus="status">
+      <div class="RankDiv${status.count}">
+      	<div class="RankImg${status.count}"></div>
+      	<div class="RankName${status.count}"><p>${dto.t_name }</p></div>
+      	<div class="RankPost${status.count}"></div>
+         <div class="Rank${status.count}-${status.count+0}"><p>${dto.t_name }</p></div>
+         <div class="Rank${status.count}-${status.count+1}"><p>${dto.t_location }</p></div>
+         <div class="Rank${status.count}-${status.count+2}"><p>평점 : ${dto.ts_score }</p></div>
+      </div>
+   </c:forEach>
+   
+   <div class="fireKing">
+   		<div class="fireQueen">
+   			<div class="fire-01" id="fire-001"></div>
+   			<div class="fire-01" id="fire-002"></div>
+   			<div class="fire-01" id="fire-003"></div>
+   			<div class="fire-01" id="fire-004"></div>
+   		</div>
+   </div>
+   
+   <div class="Comment1"><p>항상 휴지가 걸려있어요 !</p></div>
+   <div class="Comment2"><p>2번째칸 비데있음</p></div>
+   <div class="Comment3"><p>온수 나와용~</p></div>
 
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="rank/JS/rank1.js" type="text/javascript"></script>
+
 </html>
 
 

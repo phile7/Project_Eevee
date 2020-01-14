@@ -1,0 +1,373 @@
+@charset "UTF-8";
+
+.MainDiv {
+	position: absolute;
+	top: 0px;
+	width: 720px;
+	height: 1300px; 
+	background: linear-gradient(to top, rgb(0,0,0,0), rgb(33, 133, 87, 0.1), rgb(33, 133, 87, 0.2), rgb(33, 133, 87, 0.3), rgb(33, 133, 87, 0.4));	
+}
+
+.MainPageButton {
+	position: absolute;
+	top: 1205px;
+	margin-left: 625px;
+	background-image: url("image/Main.png");
+	padding: 33px 41px 33px;
+	background-repeat: no-repeat;
+	border: none;
+	background-color: rgb(0,0,0,0);
+}
+
+.MainPageButton:hover {
+	cursor: pointer;
+}
+
+/* 1위 */
+.RankDiv1 {
+	position: relative;
+	top: 0px;
+	height: 400px;
+	
+}
+
+.RankImg1 {
+	position: relative;
+	top: 120px;
+	margin: auto;
+	background-image: url("image/1.png");
+	background-repeat: no-repeat;
+	background-size: 200px;
+	width: 200px;
+	height: 200px;
+}
+
+.RankPost1 {
+	position: relative;
+	top: 520px;
+	background-image: url("image/post.png");
+	background-size: 300px;
+	background-repeat: no-repeat;
+	width: 300px;
+	height: 300px;
+	margin-left: 35px;
+	z-index: 3;
+}
+
+.RankName1 {
+	position: absolute;
+	top: 710px;
+	z-index: 4;
+	margin-left: 43px;
+}
+
+.RankName1 > p {
+	display: inline-block;
+	color : rgb(0,0,0,1);
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.Rank1-1 {
+	position: absolute;
+	top: 320px;
+	margin-left: 298px;
+	
+}
+
+.Rank1-1 > p {
+	display: inline-block;
+	font-size: 18px;
+	font-weight: bold;
+	color: rgb(0,0,0,0.6);
+}
+
+
+.Rank1-2 {
+	position: absolute;
+	top: 740px;
+	z-index: 4;
+	margin-left: 43px;
+}
+
+.Rank1-2 > p {
+	display: inline-block;
+	font-size: 17px;
+	font-weight: bold;
+	color: rgb(0,0,0,0.6);
+}
+
+.Rank1-3 {
+	position: absolute;
+	top: 920px;
+	z-index: 4;
+	margin-left: 200px;
+}
+
+.Rank1-3 > p {
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	color: rgb(0,0,0,1);
+}
+
+.Comment1 {
+	position: absolute;
+	top: 810px;
+	margin-left: 55px;
+	z-index: 4;
+}
+
+.Comment1 > p {
+	display: inline-block;
+	font-size: 23px;
+	font-weight: bold;
+	color: rgb(0,0,0,1);
+}
+
+/* 2위 */
+.RankDiv2 {
+	position: relative;
+	top: 0px;
+	height: 400px;
+}
+
+.RankImg2 {
+	position: relative;
+	top: -20px;
+	margin-left: 40px;
+	background-image: url("image/2.png");
+	background-repeat: no-repeat;
+	background-size: 200px;
+	width: 200px;
+	height: 200px;
+}
+
+.RankPost2 {
+	position: relative;
+	top: 120px;
+	background-image: url("image/post.png");
+	background-size: 300px;
+	background-repeat: no-repeat;
+	width: 300px;
+	height: 300px;
+	margin-left: 385px;
+	z-index: 3;
+}
+
+.RankName2 {
+	position: absolute;
+	top: 310px;
+	z-index: 4;
+	margin-left: 395px;
+}
+
+.RankName2 > p {
+	display: inline-block;
+	color : rgb(0,0,0,1);
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.Rank2-2 {
+	position: absolute;
+	top: 180px;
+	margin-left: 10px;
+	
+}
+
+.Rank2-2 > p {
+	display: inline-block;
+	font-size: 18px;
+	font-weight: bold;
+	color: rgb(0,0,0,0.6);
+}
+
+.Rank2-3 {
+	position: absolute;
+	top: 340px;
+	z-index: 4;
+	margin-left: 395px;
+}
+
+.Rank2-3 > p {
+	display: inline-block;
+	font-size: 17px;
+	font-weight: bold;
+	color: rgb(0,0,0,0.6);
+}
+
+.Rank2-4 {
+	position: absolute;
+	top: 520px;
+	z-index: 4;
+	margin-left: 550px;
+}
+
+.Rank2-4 > p {
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	color: rgb(0,0,0,1);
+}
+
+.Comment2 {
+	position: absolute;
+	top: 810px;
+	margin-left: 442px;
+	z-index: 4;
+}
+
+.Comment2 > p {
+	display: inline-block;
+	font-size: 23px;
+	font-weight: bold;
+	color: rgb(0,0,0,1);
+}
+
+/* 3위 */
+.RankDiv3 {
+	position: relative;
+	top: 0px;
+	height: 400px;
+}
+
+.RankImg3 {
+	position: relative;
+	top: -420px;
+	margin-left: 471px;
+	background-image: url("image/3.png");
+	background-repeat: no-repeat;
+	background-size: 200px;
+	width: 200px;
+	height: 200px;
+}
+
+.RankPost3 {
+	position: relative;
+	top: 10px;
+	background-image: url("image/post.png");
+	background-size: 300px;
+	background-repeat: no-repeat;
+	width: 300px;
+	height: 300px;
+	margin-left: 35px;
+	z-index: 3;
+}
+
+.RankName3 {
+	position: absolute;
+	top: 200px;
+	z-index: 4;
+	margin-left: 43px;
+}
+
+.RankName3 > p {
+	display: inline-block;
+	color : rgb(0,0,0,1);
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.Rank3-3 {
+	position: absolute;
+	top: -220px;
+	margin-left: 526px;
+}
+
+.Rank3-3 > p {
+	display: inline-block;
+	font-size: 18px;
+	font-weight: bold;
+	color: rgb(0,0,0,0.6);
+}
+
+.Rank3-4 {
+	position: absolute;
+	top: 230px;
+	z-index: 4;
+	margin-left: 43px;
+}
+
+.Rank3-4 > p {
+	display: inline-block;
+	font-size: 17px;
+	font-weight: bold;
+	color: rgb(0,0,0,0.6);
+}
+
+.Rank3-5 {
+	position: absolute;
+	top: 410px;
+	z-index: 4;
+	margin-left: 200px;
+}
+
+.Rank3-5 > p {
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	color: rgb(0,0,0,1);
+}
+
+.Comment3 {
+	position: absolute;
+	top: 1100px;
+	margin-left: 115px;
+	z-index: 4;
+}
+
+.Comment3 > p {
+	display: inline-block;
+	font-size: 23px;
+	font-weight: bold;
+	color: rgb(0,0,0,1);
+}
+
+#fire-001 {
+	position: absolute;
+	background-image: url("image/fire5.png");
+	background-size: 200px;
+	background-repeat: no-repeat;
+	top: 70px;
+	width: 200px;
+	height: 200px;
+	margin-left: 30px;
+	display: none;
+}
+
+#fire-002 {
+	position: absolute;
+	background-image: url("image/fire5.png");
+	background-size: 180px;
+	background-repeat: no-repeat;
+	top: 130px;
+	width: 200px;
+	height: 200px;
+	margin-left: 500px;
+	display: none;
+}
+
+#fire-003 {
+	position: absolute;
+	background-image: url("image/fire5.png");
+	background-size: 120px;
+	background-repeat: no-repeat;
+	top: 380px;
+	width: 120px;
+	height: 120px;
+	margin-left: 250px;
+	display: none;
+}
+
+#fire-004 {
+	position: absolute;
+	background-image: url("image/fire5.png");
+	background-size: 100px;
+	background-repeat: no-repeat;
+	top: 510px;
+	width: 120px;
+	height: 120px;
+	margin-left: 360px;
+	display: none;
+}
