@@ -65,7 +65,7 @@ public class RankDAO {
 					String t_name = rs.getString("t_name");
 					String t_location_O = rs.getString("t_location_O");
 					String t_location = rs.getString("t_location");
-					double ts_score = rs.getDouble("ts_score");
+					double ts_score = Math.round(rs.getDouble("ts_score")*100)/100.0;
 
 					RankDTO dto = new RankDTO(t_uid, t_name, t_location_O, t_location, ts_score);
 					dtolist.add(dto);
