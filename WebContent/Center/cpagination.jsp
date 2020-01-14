@@ -27,16 +27,16 @@
     }
 	
 	//■ << 표시 여부
-	if(curPage > 1){
+	if(curPage >= 1){
 		str += "<li><a href='" + url + "1" +  add + "' class='tooltip-top' title='처음'><i class='fas fa-angle-double-left'></i></a></li>\n";
 	}
 	
   	//■  < 표시 여부
-    if (start_page > 1) 
-    	str += "<li><a href='" + url + (start_page - 1) + add + "' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
+    if (start_page >= 1) 
+    	str += "<li><a href='" + url + (start_page) + add + "' class='tooltip-top' title='이전'><i class='fas fa-angle-left'></i></a></li>\n";
     
     //■  페이징 안의 '숫자' 표시	
-	if (totalPage > 1) {
+	if (totalPage >= 1) {
 	    for (int k = start_page; k <= end_page; k++) {
 	        if (curPage != k)
 	            str += "<li><a href='" + url + k + add + "'>" + k + "</a></li>\n";
@@ -46,12 +46,12 @@
 	}
 	
 	//■ > 표시
-    if (totalPage > end_page){
-    	str += "<li><a href='" + url + (end_page + 1) + add + "' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
+    if (totalPage >= end_page){
+    	str += "<li><a href='" + url + (totalPage - 1) + add + "' class='tooltip-top' title='다음'><i class='fas fa-angle-right'></i></a></li>\n";
     }
 
 	//■ >> 표시
-    if (curPage < totalPage) {
+    if (curPage <= totalPage) {
         str += "<li><a href='" + url + totalPage + add + "' class='tooltip-top' title='맨끝'><i class='fas fa-angle-double-right'></i></a></li>\n";
     }
 

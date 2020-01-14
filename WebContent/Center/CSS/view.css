@@ -1,0 +1,421 @@
+@charset "UTF-8";
+
+.MainDiv {
+	width: 720px;
+	height: 1300px;
+	margin: auto;
+}
+
+.p1 {
+	position: absolute;
+	top: 0px;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.p2 {
+	position: absolute;
+	top: 30px;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.p3 {
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.p4 {
+	position: absolute;
+	top: 30px;
+	left: 50%;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.p5 {
+	position: absolute;
+	top: 20px;
+	left: 1%;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.p6 {
+	position: absolute;
+	top: 20px;
+	left: 72%;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.p7 {
+	position: absolute;
+	top: -10px;
+	left: 14%;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.ContentDiv {
+	position: absolute;
+	top: 70px;
+	width: 720px;
+	border: 2px solid rgb(33, 133, 87, 1);
+	border-left: none;
+	border-right: none;
+	height: 350px;
+	overflow: hidden;
+}
+
+.ContentDiv2 {
+	position: absolute;
+	top: 0px;
+	left: 0%;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.Delete1 {
+	position: absolute;
+	top : 445px;
+	border: none;
+	background-color: rgb(0,0,0,0);
+	left: 66.5%;
+	font-size: 32px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.Delete1:hover {
+	cursor: pointer;
+}
+
+.goList {
+	position: absolute;
+	top: 445px;
+	left: 31.5%;
+	background-color: rgb(0,0,0,0);
+	border: none;
+	font-size: 32px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.goList:hover {
+	cursor: pointer;
+}
+
+.goWrite {
+	position: absolute;
+	border: none;
+	background-color: rgb(0,0,0,0);
+	top: 448px;
+	left: 34.5%;
+	font-size: 28px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.goWrite:hover {
+	cursor: pointer;
+}
+
+.goEdit {
+	position: absolute;
+	top: 445px;
+	left: 63.5%;
+	background-color: rgb(0,0,0,0);
+	font-family: FontAwesome;	
+	border: none;
+	font-size: 32px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.goEdit:hover {
+		cursor: pointer;
+}
+
+.CommentDiv {
+	position: relative;
+	width: 720px;
+	top: 390px;
+	height: 150px;
+	border: 2px solid rgb(33, 133, 87, 1);
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+}
+
+.div1 {
+	position: absolute;
+	width: 720px;
+	top: 30px;
+	height: 30px;
+	border: 1px solid rgb(33, 133, 87, 1);
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+
+.Delete2 {
+	position: absolute;
+	top : 507px;
+	border: none;
+	background-color: rgb(0,0,0,0);
+	left: 66.5%;
+	font-size: 22px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.Delete2:hover {
+	cursor: pointer;
+}
+
+[class *= "CommentDD-0"] {
+	position: relative;
+	width: 720px;
+	height: 100px;
+	top: 420px;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+}
+
+[class *= "p-0"] {
+	position: absolute;
+	top: -150px;
+	left: 1%;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+[class *= "p-1"] {
+	position: absolute;
+	top: -150px;
+	left: 72%;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+[class *= "Ddiv-0"] {
+	position: absolute;
+	width: 720px;
+	top: -141px;
+	height: 30px;
+	border: 1px solid rgb(33, 133, 87, 1);
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+
+[class *= "p-3"] {
+	position: absolute;
+	top: -10px;
+	left: 14%;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.Delete3 {
+	position: absolute;
+	top : 537px;
+	border: none;
+	background-color: rgb(0,0,0,0);
+	left: 66.5%;
+	font-size: 22px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.Delete3:hover {
+	cursor: pointer;
+}
+
+.Com {
+	position: absolute;
+	top: 594px;
+	left: 62.2%;
+	background-color: rgb(0,0,0,0);
+	font-family: FontAwesome;	
+	border: none;
+	font-size: 32px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.Com:hover {
+	cursor: pointer;
+}
+
+.ComText {
+	position: absolute;
+	top: 600px;
+	left: 35%;
+	width: 500px;
+	height: 20px;
+	border: 2px solid rgb(33, 133, 87, 1);
+	border-radius: 5px;
+}
+
+
+/*
+List
+*/
+
+.center {
+	position: absolute;
+	top: 578px;
+    left: 29.7%;
+}
+
+ul.pagination{
+	list-style-type: none;
+}
+
+ul.pagination li{
+    display: inline-block;
+}
+
+ul.pagination a {
+    color: black;
+    float: left;
+    padding: 4px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+    /* border: 1px solid #ddd; */
+    /* margin: 0 4px; */
+    margin: 0px;
+}
+
+ul.pagination a.active {
+    background-color:  rgb(33, 133, 87, 1);;
+    color: white;
+    border: 1px solid  rgb(33, 133, 87, 1);
+}
+
+ul.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.Maindiv2 {
+	position: relative;
+	width: 720px;
+	top: 440px;
+	margin: auto;
+}
+
+table {
+	position: relative;
+	width: 100%; 
+	height: 580px;
+}
+	
+table{
+	border: 1.1px solid  black;
+	border-left: none;
+	border-right: none;
+	border-collapse: collapse;
+	border-top: none;
+	text-align: center;
+	white-space: nowrap;
+	font-weight: bold;
+}
+
+.MainTr {
+	border: 1.1px solid black;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-collapse: collapse;
+	text-align: center;
+	white-space: nowrap;
+	font-size: 15px;
+	background-color: rgb(0,0,0, 0.1);
+	font-weight: bold;
+}
+
+.KingTr {
+	color: red;
+	font-weight: bold;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.SubTr {
+	border: 1.1px solid  black;
+	border-left: none;
+	border-right: none;
+	border-collapse: collapse;
+	text-align: center;
+	white-space: nowrap;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.KingTr > td > a {
+	text-decoration: none;
+	color: red;
+	font-weight: bold;
+}
+
+.SubTr > td > a {
+	text-decoration: none;
+	color: black;
+}
+
+.SubTr > td > a:visited {
+	color :gray;
+}
+
+.New {
+	position: absolute;
+	border: none;
+	background-color: rgb(0,0,0,0);
+	top: 595px;
+	left: 92%;
+	font-size: 28px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.New:hover {
+	cursor: pointer;
+}
+
+.MainPageButton {
+	position: absolute;
+	top: 592px;
+	left: 2%;
+	font-family: FontAwesome;	
+	background-color: rgb(0,0,0,0);
+	border: none;
+	font-size: 32px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.MainPageButton:hover {
+	cursor: pointer;
+}
+
+.LogOutButton {
+	position: absolute;
+	top: 2px;
+	left: 92%;
+	font-family: FontAwesome;	
+	background-color: rgb(0,0,0,0);
+	border: none;
+	color: rgb(0,0,0, 0.7);
+	font-size: 30px;
+}
+
+.LogOutButton:hover {
+	cursor: pointer;
+}

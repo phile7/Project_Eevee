@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+.center {
+	position: absolute;
+	top: 900px;
+    left: 29.7%;
+}
+
+ul.pagination{
+	list-style-type: none;
+}
+
+ul.pagination li{
+    display: inline-block;
+}
+
+ul.pagination a {
+    color: black;
+    float: left;
+    padding: 4px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+    /* border: 1px solid #ddd; */
+    /* margin: 0 4px; */
+    margin: 0px;
+}
+
+ul.pagination a.active {
+    background-color:  rgb(33, 133, 87, 1);;
+    color: white;
+    border: 1px solid  rgb(33, 133, 87, 1);
+}
+
+ul.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.Maindiv {
+	position: relative;
+	width: 720px;
+	height: 1300px;
+	margin: auto;
+}
+
+.div1 {
+	position: relative;
+	width: 100%;
+	height: 52px;
+	background-color: rgb(33, 133, 87, 1);
+	border: 1.1px solid  rgb(33, 133, 87, 1);
+	border-radius: 5px;
+}
+
+.div1 > p {
+	position: absolute;
+	text-align: center;
+	display: inline-block;
+	color: white;
+	font-weight: bold;
+	font-size: 25px;
+	top: -15px;
+	left: 42%;
+}	
+
+table {
+	position: relative;
+	width: 100%; 
+	height: 850px;
+}
+	
+table{
+	border: 1.1px solid  black;
+	border-left: none;
+	border-right: none;
+	border-collapse: collapse;
+	border-top: none;
+	text-align: center;
+	white-space: nowrap;
+	font-weight: bold;
+}
+
+.MainTr {
+	border: 1.1px solid black;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	border-collapse: collapse;
+	text-align: center;
+	white-space: nowrap;
+	font-size: 15px;
+	background-color: rgb(0,0,0, 0.1);
+	font-weight: bold;
+}
+
+.KingTr {
+	color: red;
+	font-weight: bold;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.SubTr {
+	border: 1.1px solid  black;
+	border-left: none;
+	border-right: none;
+	border-collapse: collapse;
+	text-align: center;
+	white-space: nowrap;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.KingTr > td > a {
+	text-decoration: none;
+	color: red;
+	font-weight: bold;
+}
+
+.SubTr > td > a {
+	text-decoration: none;
+	color: black;
+}
+
+.SubTr > td > a:visited {
+	color :gray;
+}
+
+.New {
+	position: absolute;
+	border: none;
+	background-color: rgb(0,0,0,0);
+	top: 918px;
+	left: 92%;
+	font-size: 28px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.New:hover {
+	cursor: pointer;
+}
+
+.MainPageButton {
+	position: absolute;
+	top: 918px;
+	left: 2%;
+	font-family: FontAwesome;	
+	background-color: rgb(0,0,0,0);
+	border: none;
+	font-size: 32px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.MainPageButton:hover {
+	cursor: pointer;
+}
+
+.LogOutButton {
+	position: absolute;
+	top: 11px;
+	left: 92%;
+	font-family: FontAwesome;	
+	background-color: rgb(0,0,0,0);
+	border: none;
+	color: white;
+	font-size: 35px;
+}
+
+.LogOutButton:hover {
+	cursor: pointer;
+}
+
+

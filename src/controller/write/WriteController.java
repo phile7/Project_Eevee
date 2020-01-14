@@ -209,6 +209,8 @@ public class WriteController extends HttpServlet {
 		case "/cview.do":
 			command = new ViewCommandCenter();
 			command.execute(request, response);
+			command = new ListCommandCenter();
+			command.execute(request, response);
 			viewPage = "Center/view.jsp";
 			break;
 		case "/cdeleteOk.do":

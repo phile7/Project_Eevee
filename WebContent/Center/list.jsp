@@ -8,35 +8,26 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>글 목록</title>
-<style>
-table {width: 100%;}
-table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-}
-</style>
+<title>고객센터</title>
+
 <!-- 페이징 -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="center/CSS/list.css"/>
+<link rel="stylesheet" type="text/css" href="Center/CSS/clist.css"/>
 <script src="https://kit.fontawesome.com/bb29575d31.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="Center/JS/clist.js" type="text/javascript"></script>
+
 </head>
-<body>
-<h2>리스트</h2>
-<hr>
-<h2>로그인 상태입니다</h2>
-<form action="logout.do">
-<input type="submit" value="로그아웃"><br>
-</form>
-<h2>메인페이지</h2>
-<form action="mainPage.do">
-<input type="submit" value="메인페이지"><br>
-</form>
-<hr>
+<body style="width: 720px; height: 1300px; margin: auto;">
+<div class="Maindiv">
+
+<div class="div1"><p>고객센터</p></div>
+
 <table>
-	<tr>
+	<tr class="MainTr">
 		<th>번호</th>
-		<th>글종류</th>
+		<th></th>
 		<th>제목</th>
 		<th>작성자</th>
 		<th>조회수</th>
@@ -45,24 +36,24 @@ table, th, td {
 	<c:forEach var="dto" items="${list }" varStatus="status">
 		<c:choose>
 			<c:when test="${dto.mb_level==2 }">
-				<tr>
+				<tr class="KingTr">
 					<td>${(page - 1) * pageRows + status.index + 1 }</td>
 					<td>공지</td>
-					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }">${dto.subject }</a></td>
+					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }"; onclick="color()"; class="${(page - 1) * pageRows + status.index + 1 }";>${dto.subject }</a></td>
 					<td>${dto.mb_id }</td>
 					<td>${dto.viewCnt }</td>
 					<td>${dto.regDate }</td>
-				</tr>
+					</tr>
 			</c:when>
 		</c:choose>	
 	</c:forEach>
 	<c:forEach var="dto" items="${list }" varStatus="status">
 		<c:choose>
 			<c:when test="${dto.mb_level==1 }">
-				<tr>
+				<tr class="SubTr">
 					<td>${(page - 1) * pageRows + status.index + 1 }</td>
 					<td>건의</td>
-					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }">${dto.subject }</a></td>
+					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }"; onclick="color()"; class="${(page - 1) * pageRows + status.index + 1 }";>${dto.subject }</a></td>
 					<td>${dto.mb_id }</td>
 					<td>${dto.viewCnt }</td>
 					<td>${dto.regDate }</td>
@@ -74,7 +65,13 @@ table, th, td {
 		
 </table>
 <br>
-<button onclick="location.href='cwrite.do?uid=${sessionScope.uid}'">신규등록</button>
+<button onclick="location.href='cwrite.do?uid=${sessionScope.uid}'" class="New"><i class="fas fa-pencil-alt"></i></button>
+<form action="logout.do">
+<input type="submit" class="LogOutButton" value="&#xf011">
+</form>
+<form action="mainPage.do">
+<input type="submit" value="&#xf015" class="MainPageButton">
+</form>
 	
 <jsp:include page="cpagination.jsp">
 	<jsp:param value="${writePages }" name="writePages"/>
@@ -82,7 +79,12 @@ table, th, td {
 	<jsp:param value="${page }" name="curPage"/>
 </jsp:include>
 
+</div>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="Center/JS/clist.js" type="text/javascript"></script>
+
 </html>
 
 

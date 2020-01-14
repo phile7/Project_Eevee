@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+.MainDiv {
+	width: 720px;
+	height: 1300px;
+	margin: auto;
+}
+
+.p1 {
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.p2 {
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.p3 {
+	position: absolute;
+	top: 45px;
+	display : inline-block;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.subject {
+	position: absolute;
+	top: 58px;
+	left: 34%;
+	width: 500px;
+	border: 2px solid rgb(33, 133, 87, 1);
+	height: 20px;
+	border-radius: 5px;
+}
+
+.goWrite {
+	position: absolute;
+	top : 832px;
+	border: none;
+	font-family: FontAwesome;	
+	background-color: rgb(0,0,0,0);
+	left: 63%;
+	font-size: 32px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.goWrite:hover {
+	cursor: pointer;
+}
+
+.goList {
+	position: absolute;
+	top: 830px;
+	left: 66%;
+	background-color: rgb(0,0,0,0);
+	border: none;
+	font-size: 32px;
+	color: rgb(33, 133, 87, 1);
+}
+
+.goList:hover {
+	cursor: pointer;
+}
