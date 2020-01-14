@@ -12,6 +12,7 @@ import command.map.AjaxListCommand;
 import command.map.Command;
 import command.map.ContentDataCommand;
 import command.map.DataCommand;
+import command.map.ScoreAjaxCommand;
 import command.map.UidDataCommand;
 
 @WebServlet("*.ajax")
@@ -56,6 +57,9 @@ public class AjaxController extends HttpServlet {
 			break;
 		case "/content.ajax":
 			new ContentDataCommand().execute(request, response);
+			break;
+		case "/score.ajax" :
+			new ScoreAjaxCommand().execute(request, response);
 			break;
 		}
 	

@@ -15,9 +15,9 @@
 <title>Do It</title>
 </head>
 
-<link rel="stylesheet" href="../GPS/css/map01.css">  
+<link rel="stylesheet" href="../Project_Eevee/GPS/css/map01.css">  
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a9e74f5e39c3142a6c0f11bedb03510b"></script>		<!--  지도 API 인증키 -->
-<script src="./Mapjs02.js" type="text/javascript"></script>	<!--  마커 정보 배열을 담은 JS 파일 -->
+<script src="./GPS/Mapjs02.js" type="text/javascript"></script>	<!--  마커 정보 배열을 담은 JS 파일 -->
 
 <body>
 <div id="t_uid"></div>
@@ -113,7 +113,7 @@ if (navigator.geolocation) {
         circle.setMap(map);
         
         // context 수정
-		var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
+		var url = "http://localhost:8081/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
         
         // 서울 이외의 영역 마커(제주도)(테스트용)
 		// var url = "http://localhost:8081/togetter/location.ajax?lat=33.491975&lon=126.490608";
@@ -187,7 +187,7 @@ if (navigator.geolocation) {
 						var t_uid = this.getTitle();
 
 						// url 수정
-						url = "http://localhost:8080/Project_Eevee/data.ajax?t_uid=" + t_uid;
+						url = "http://localhost:8081/Project_Eevee/data.ajax?t_uid=" + t_uid;
 						
 						$.ajax({
 							url : url,
@@ -201,10 +201,47 @@ if (navigator.geolocation) {
 								}
 							}
 						});
-						
+						//if(${sessionScope.uid} != null) alert(${sessionScope.uid});
+							// url 수정
+							url = "http://localhost:8081/Project_Eevee/score.ajax?t_uid=" + t_uid + "&mb_uid=" + ${sessionScope.uid};
+							
+							$.ajax({
+								url : url,
+								type : "GET",
+								cache : false,
+								dataType: "json",
+								success : function(data, status){
+									if(status == "success") {
+										starStamp(data);
+									}
+								}
+							});
+							
+						function starStamp(data) {
+							var score = data.score;
+							if(score >= 5) {
+								$("#score").css("background-image", "url('./GPS/image/five.png')");
+							} else if(5 > score && score >= 4.5) {
+								$("#score").css("background-image", "url('./GPS/image/fourH.png')");
+							} else if(4.5 > score && score >= 4) {
+								$("#score").css("background-image", "url('./GPS/image/four.png')");
+							} else if(4 > score && score >= 3.5) {
+								$("#score").css("background-image", "url('./GPS/image/threeH.png')");
+							} else if(3.5 > score && score >= 3) {
+								$("#score").css("background-image", "url('./GPS/image/three.png')");
+							} else if(3 > score && score >= 2.5){
+								$("#score").css("background-image", "url('./GPS/image/twoH.png')");
+							} else if(2.5 > score && score >= 2) {
+								$("#score").css("background-image", "url('./GPS/image/two.png')");
+							} else if(2 > score && score >= 1.5) {
+								$("#score").css("background-image", "url('./GPS/image/oneH.png')");
+							} else if(1.5 > score && score >= 1) {
+								$("#score").css("background-image", "url('./GPS/image/one.png')");
+							} 
+						}
 						
 						// 리뷰 가져오는 ajax부분 수정
-						url = "http://localhost:8080/Project_Eevee/content.ajax?t_uid=" + t_uid;
+						url = "http://localhost:8081/Project_Eevee/content.ajax?t_uid=" + t_uid;
 						
 						$.ajax({
 							url : url,
@@ -235,7 +272,7 @@ if (navigator.geolocation) {
 						function scoreRequest(t_uid){
 					        $("#score a").attr({
 								// url 수정 가능
-					        	"href" : "http://localhost:8080/Project_Eevee/write.tdo?t_uid=" + t_uid
+					        	"href" : "http://localhost:8081/Project_Eevee/write.tdo?t_uid=" + t_uid
 					        });
 						};
 						
@@ -339,7 +376,8 @@ function displayMarker(locPosition) {
 }    
 
 // 마커 이미지의 이미지 주소입니다
-var imageSrc = "image/marker.png";
+//var imageSrc = "./GPS/image/marker.png";
+var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
 // 마커 이미지 테스트
 // var imageSrc = "../IMG/markerEX.png";
@@ -351,6 +389,6 @@ var markers = [];
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>	<!--  사용될 수도 있기 때문에  -->
 
-<script src="../GPS/js/gps.js"></script>
+<script src="./GPS/js/gps.js"></script>
 </html>
 
