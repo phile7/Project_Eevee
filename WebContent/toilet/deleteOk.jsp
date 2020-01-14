@@ -12,7 +12,7 @@
 	<c:otherwise>
 		<script>
 			alert("삭제 성공");
-			location.href = "list.tdo?t_uid=${t_uid}";
+			location.href = "list.tdo?t_uid=" + ${t_uid};
 		</script>
 	</c:otherwise>
 </c:choose>

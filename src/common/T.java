@@ -16,6 +16,8 @@ public interface T {
 	
 	public static final String SQL_COMMENT_DELETE_BY_UID = "DELETE FROM comment WHERE co_uid = ?";
 
+	public static final String SQL_COMMENT_COUNT_BY_UID = "select count(*) from comment where comment.co_depth = 5 and comment.co_puid = ?";
+	
 	//화장실 게시판 랭킹 연동
 	
 	public static final String SQL_SCORE_MAKE_DUMMY = "INSERT INTO t_score" + "(ts_score, t_uid) "

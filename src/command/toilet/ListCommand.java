@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lec.beans.ToiletWriteDAO;
 import com.lec.beans.ToiletWriteDTO;
+import com.lec.beans.WriteDAO;
 
 public class ListCommand implements Command {
 
@@ -47,12 +48,17 @@ public class ListCommand implements Command {
 			dao = new ToiletWriteDAO();
 			arr = dao.selectFromRow(t_uid, fromRow, pageRows);
 			
+			dao = new ToiletWriteDAO();
+			int [] arrComment = dao.countComment(arr);
+			
 			request.setAttribute("list", arr);
+			request.setAttribute("cnt", cnt);
 			request.setAttribute("t_uid", t_uid);
 			request.setAttribute("page", page);
 			request.setAttribute("totalPage", totalPage);
 			request.setAttribute("writePages", writePages);
 			request.setAttribute("pageRows", pageRows);
+			request.setAttribute("arrComment", arrComment);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

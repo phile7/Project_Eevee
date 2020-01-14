@@ -189,7 +189,7 @@ function chkSubmitCommentToComment(){
 		for(int i = 0 + cnt; i < indexComment; i++){
 			indexCommentToComment = (Integer) request.getAttribute("indexCommentToComment" + i);
 			commentToComment = (CommentDTO [] )request.getAttribute("commentToComment" + i);
-			for(int j = 0; j < indexCommentToComment; j++ )
+			for(int j = 0; j < indexCommentToComment; j++ ){
 			if(comment[i].getCo_uid() == commentToComment[j].getCo_puid()) {
 				String mb_id = commentToComment[j].getMb_id();
 				String regDate = commentToComment[j].getRegDate();
@@ -209,6 +209,8 @@ function chkSubmitCommentToComment(){
 			}
 		}
 		cnt++;
+		break;
+		}
 		%>
 		<form class="commentsection" name="form" 
 			action="commentToComment.do?uid=${sessionScope.uid}&co_uid=${dto.co_uid}&pwr_uid=${read[0].pwr_uid}"

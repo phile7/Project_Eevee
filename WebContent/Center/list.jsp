@@ -37,7 +37,7 @@
 		<c:choose>
 			<c:when test="${dto.mb_level==2 }">
 				<tr class="KingTr">
-					<td>${(page - 1) * pageRows + status.index + 1 }</td>
+					<td>${cnt - ((page - 1) * pageRows + status.index + 1) }</td>
 					<td>공지</td>
 					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }"; onclick="color()"; class="${(page - 1) * pageRows + status.index + 1 }";>${dto.subject }</a></td>
 					<td>${dto.mb_id }</td>
@@ -51,7 +51,7 @@
 		<c:choose>
 			<c:when test="${dto.mb_level==1 }">
 				<tr class="SubTr">
-					<td>${(page - 1) * pageRows + status.index + 1 }</td>
+					<td>${cnt - ((page - 1) * pageRows + status.index + 1) }</td>
 					<td>건의</td>
 					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }"; onclick="color()"; class="${(page - 1) * pageRows + status.index + 1 }";>${dto.subject }</a></td>
 					<td>${dto.mb_id }</td>

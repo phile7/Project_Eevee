@@ -125,8 +125,9 @@ function chkSubmitCommentToComment(){
 		<%
 				}
 			}
-		cnt++;
 		}
+		cnt++;
+		break;
 		}
 		%>
 		<form name="form"
@@ -136,15 +137,15 @@ function chkSubmitCommentToComment(){
 				type="submit" value="&#xf040" class="Com" />
 		</form>
 	</c:forEach>
-</div>
-	<%-- 
+	</div>
+	
 	<form name="frm"
 		action="ccomment.do?uid=${sessionScope.uid}&cwr_uid=${read[0].cwr_uid}"
 		method="post" onsubmit="return chkSubmitComment()">
 		<input type="text" name="comment" style="width: 600px" /> <input
 			type="submit" value="댓글등록" />
 	</form>
-	--%>
+	
 <div class="Maindiv2">
 <table>
 	<tr class="MainTr">

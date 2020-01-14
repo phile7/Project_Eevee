@@ -46,6 +46,7 @@ public class ListCommandCenter implements Command {
 			arr = dao.selectFromRow(fromRow, pageRows);
 			
 			request.setAttribute("list", arr);
+			request.setAttribute("cnt", cnt);
 			request.setAttribute("page", page);
 			request.setAttribute("totalPage", totalPage);
 			request.setAttribute("writePages", writePages);

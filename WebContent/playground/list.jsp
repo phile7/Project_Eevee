@@ -86,8 +86,8 @@ border-collapse: collapse;
 	</tr>  
 	<c:forEach var="dto" items="${list }" varStatus="status">
 		<tr class="writes">
-			<td>${(page - 1) * pageRows + status.index + 1 }</td>
-			<td><a href="view.do?uid=${dto.pwr_uid }&page=${page }">${dto.subject }</a></td>
+			<td>${cnt - ((page - 1) * pageRows + status.index + 1) }</td>
+			<td><a href="view.do?uid=${dto.pwr_uid }&page=${page }">${dto.subject }[${arrComment[status.index]}]</a></td>
 			<td>${dto.regDate }</td>
 		</tr>
 	</c:forEach>		

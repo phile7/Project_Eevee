@@ -44,8 +44,8 @@ table, th, td {
 	</tr>
 	<c:forEach var="dto" items="${list }" varStatus="status">
 		<tr>
-			<td>${(page - 1) * pageRows + status.index + 1 }</td>
-			<td><a href="view.tdo?uid=${dto.twr_uid }&page=${page }&t_uid=${dto.t_uid}">${dto.subject }</a></td>
+			<td>${cnt - ((page - 1) * pageRows + status.index + 1) }</td>
+			<td><a href="view.tdo?uid=${dto.twr_uid }&page=${page }&t_uid=${dto.t_uid}">${dto.subject }[${arrComment[status.index]}]</a></td>
 			<td>${dto.mb_id }</td>
 			<td>${dto.twr_score }</td>
 			<td>${dto.viewCnt }</td>

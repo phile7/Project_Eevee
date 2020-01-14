@@ -12,7 +12,7 @@
 	<c:otherwise>
 		<script>
 			alert("등록 성공");
-			location.href = "cview.do?uid=${pwr_uid}";
+			location.href = "cview.do?uid=${cwr_uid}";
 		</script>
 	</c:otherwise>
 </c:choose>

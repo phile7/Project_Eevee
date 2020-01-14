@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import common.P;
 import common.T;
 import common.W;
 
@@ -238,7 +239,11 @@ public class ToiletWriteDAO {
 				chk++;
 				totalScore += rs.getDouble("twr_score");
 			}
-			double ts_score = totalScore/chk;
+			double ts_score = 0.0;
+			if(chk != 0) {
+				ts_score = totalScore/chk;
+			}
+
 			pstmt.close();
 			
 			pstmt = conn.prepareStatement(T.SQL_SCORE_UPDATE);
@@ -307,7 +312,30 @@ public class ToiletWriteDAO {
 	}
 	
 	// 댓글
-	
+
+	// 글마다 댓글 개수 확인
+
+	public int[] countComment(ToiletWriteDTO[] arr) {
+		int[] comment = new int[arr.length];
+		for (int i = 0; i < comment.length; i++) {
+			try {
+				pstmt = conn.prepareStatement(T.SQL_COMMENT_COUNT_BY_UID);
+				pstmt.setInt(1, arr[i].getTwr_uid());
+				this.rs = pstmt.executeQuery();
+				this.rs.next();
+				comment[i] = this.rs.getInt(1);
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return comment;
+	}
 	// 댓글등록
 	public int insertComment(int mb_uid, String comment, int twr_uid) throws SQLException {
 		int cnt = 0;

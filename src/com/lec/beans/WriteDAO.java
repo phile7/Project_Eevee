@@ -198,10 +198,10 @@ public class WriteDAO {
 	}
 
 	// 페이징
-	
+
 	// 몇번째 페이지부터 몇개의 rows를 select
-	public WriteDTO [] selectFromRow(int from, int rows) throws SQLException {
-		WriteDTO [] arr = null;
+	public WriteDTO[] selectFromRow(int from, int rows) throws SQLException {
+		WriteDTO[] arr = null;
 		try {
 			pstmt = conn.prepareStatement(P.SQL_SELECT_FROM_ROW);
 			pstmt.setInt(1, from);
@@ -211,13 +211,14 @@ public class WriteDAO {
 		} finally {
 			close();
 		}
-		
+
 		return arr;
 	}
+
 	// 총 몇개의 글이 있는지 계산
 	public int countAll() throws SQLException {
 		int cnt = 0;
-		
+
 		try {
 			pstmt = conn.prepareStatement(P.SQL_COUNT_ALL);
 			rs = pstmt.executeQuery();
@@ -226,12 +227,12 @@ public class WriteDAO {
 		} finally {
 			close();
 		}
-		
+
 		return cnt;
 	}
-	
-	//로그인 확인
-	public String [] loginCheck(String id, String pw) throws SQLException {
+
+	// 로그인 확인
+	public String[] loginCheck(String id, String pw) throws SQLException {
 		String uid = "";
 		String level = "";
 		try {
@@ -239,10 +240,10 @@ public class WriteDAO {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			rs.next(); // 첫번째 행의
-			pw = rs.getString(1); // 첫번째 컬럼		
+			pw = rs.getString(1); // 첫번째 컬럼
 			pstmt.close();
-			
-			//해당 아이디 uid, 관리자권한 가져오기
+
+			// 해당 아이디 uid, 관리자권한 가져오기
 			pstmt = conn.prepareStatement(P.SQL_SELECT_UID_FROM_ID);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -252,13 +253,37 @@ public class WriteDAO {
 		} finally {
 			close();
 		}
-		
-		String [] arr = {pw, uid, level};
+
+		String[] arr = { pw, uid, level };
 		return arr;
 	}
-	
+
 	// 댓글
-	
+
+	// 글마다 댓글 개수 확인
+
+	public int[] countComment(WriteDTO[] arr) {
+		int[] comment = new int[arr.length];
+		for (int i = 0; i < comment.length; i++) {
+			try {
+				pstmt = conn.prepareStatement(P.SQL_COMMENT_COUNT_BY_UID);
+				pstmt.setInt(1, arr[i].getPwr_uid());
+				this.rs = pstmt.executeQuery();
+				this.rs.next();
+				comment[i] = this.rs.getInt(1);
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		try {
+			close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return comment;
+	}
+
 	// 댓글등록
 	public int insertComment(int mb_uid, String comment, int pwr_uid) throws SQLException {
 		int cnt = 0;
@@ -275,6 +300,7 @@ public class WriteDAO {
 
 		return cnt;
 	}
+
 	// 특정 글 클릭시 댓글도 불러오기
 	public CommentDTO[] createCommentArray(ResultSet rs) throws SQLException {
 		ArrayList<CommentDTO> list = new ArrayList<CommentDTO>();
@@ -302,7 +328,7 @@ public class WriteDAO {
 		list.toArray(arr);
 		return arr;
 	}
-	
+
 	public CommentDTO[] commentRead(int pwr_uid) throws SQLException {
 		CommentDTO[] arr = null;
 
@@ -312,12 +338,12 @@ public class WriteDAO {
 			rs = pstmt.executeQuery();
 			arr = createCommentArray(rs);
 		} finally {
-			
+
 		}
 
 		return arr;
 	}
-	
+
 	public CommentDTO[] commentToCommentRead(int pwr_uid) throws SQLException {
 		CommentDTO[] arr = null;
 
@@ -347,7 +373,8 @@ public class WriteDAO {
 
 		return cnt;
 	}
-	//대댓글 등록
+
+	// 대댓글 등록
 	public int insertCommentToComment(int mb_uid, String comment, int co_uid) throws SQLException {
 		int cnt = 0;
 
@@ -363,7 +390,8 @@ public class WriteDAO {
 
 		return cnt;
 	}
-	//회원 탈퇴
+
+	// 회원 탈퇴
 	// 회원 uid 의 글을 삭제하기
 	public int deleteMember(int mb_uid) throws SQLException {
 		int cnt = 0;
@@ -377,8 +405,8 @@ public class WriteDAO {
 		}
 
 		return cnt;
-	}	
-	
+	}
+
 	public int deleteMemberInfo(int mb_uid) throws SQLException {
 		int cnt = 0;
 
@@ -391,5 +419,5 @@ public class WriteDAO {
 		}
 
 		return cnt;
-	}	
+	}
 } // end class

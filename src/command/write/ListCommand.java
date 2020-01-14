@@ -45,11 +45,16 @@ public class ListCommand implements Command {
 			dao = new WriteDAO();
 			arr = dao.selectFromRow(fromRow, pageRows);
 			
+			dao = new WriteDAO();
+			int [] arrComment = dao.countComment(arr);
+			
 			request.setAttribute("list", arr);
+			request.setAttribute("cnt", cnt);
 			request.setAttribute("page", page);
 			request.setAttribute("totalPage", totalPage);
 			request.setAttribute("writePages", writePages);
 			request.setAttribute("pageRows", pageRows);
+			request.setAttribute("arrComment", arrComment);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

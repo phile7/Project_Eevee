@@ -16,6 +16,8 @@ public interface P {
 	
 	public static final String SQL_COMMENT_DELETE_BY_UID = "DELETE FROM comment WHERE co_uid = ?";
 	
+	public static final String SQL_COMMENT_COUNT_BY_UID = "select count(*) from comment where comment.co_depth = 1 and comment.co_puid = ?";
+	
 	//회원가입
 	
 	public static final String SQL_SELECT_PW_FROM_ID = "select mb_password from member where mb_id = ?";
