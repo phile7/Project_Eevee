@@ -29,7 +29,7 @@
 					<div id="rk"><a href="rlist.do">랭킹보드</a></div>
 					<div id="play"><a href="list.do">놀이터</a></div>
 					<div id="out"><a href="logout.do">로그아웃</a></div>
-					<div id="ex"><a href="chkDelete(${sessionScope.uid})">회원탈퇴</a></div>
+					<div id="ex"><a onclick="chkDelete(${sessionScope.uid})">회원탈퇴</a></div>
 				</div>
 				<script>
 					function chkDelete(id){
@@ -37,7 +37,7 @@
 						var r = confirm("정말 삭제하시겠습니까? 모든 회원정보가 지워집니다");
 						
 						if(r){
-							location.href = 'withdraw.do?mb_uid=' + id;
+							return location.href = 'withdraw.do?mb_uid=' + id;
 						}
 					}
 				</script>
@@ -99,8 +99,10 @@ if (navigator.geolocation) {
 	//function onSuccess(position){
     //watchID = navigator.geolocation.watchPosition(function(position) {
         
-        var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
+    	
+    	var lat = 33.491975, lon=126.490608;
+        //var lat = position.coords.latitude, // 위도
+          //  lon = position.coords.longitude; // 경도
         
         var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
         
@@ -123,10 +125,10 @@ if (navigator.geolocation) {
         circle.setMap(map);
         
         // context 수정
-		//var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
+		var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
         
         // 서울 이외의 영역 마커(제주도)(테스트용)
-		 var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=33.491975&lon=126.490608";
+		// var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=33.491975&lon=126.490608";
 		
         // 아무마커도 찍히지 않는 위치 (테스트용)
 		// var url = "http://localhost:8081/togetter/location.ajax?lat=37.497146&lon=127.048162";
@@ -247,7 +249,9 @@ if (navigator.geolocation) {
 								$("#score").css("background-image", "url('./GPS/image/oneH.png')");
 							} else if(1.5 > score && score >= 1) {
 								$("#score").css("background-image", "url('./GPS/image/one.png')");
-							} 
+							} else {
+								$("#score").css("background-image", "url('./GPS/image/zstar.png')");
+							}
 						}
 						
 						// 리뷰 가져오는 ajax부분 수정

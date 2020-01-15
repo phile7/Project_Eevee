@@ -312,7 +312,11 @@ VALUES
 INSERT INTO `member`
    (mb_id, mb_password, mb_email, `mb_emailHash`, `mb_emailSign`, mb_level)
 VALUES
-   ('bb', 'bb', 'aa@aa.com', 1234, true, 1)
+   ('bb', 'bb', 'aa@aa.com', 1234, true, 1),
+   ('iiii', '1111', 'phile7@naver.com', 1234, true,1),
+   ('iiii1', '1111', 'phile7@naver.com', 1234, true,1),
+   ('iiii2', '1111', 'phile7@naver.com', 1234, true,1),
+   ('iiii3', '1111', 'phile7@naver.com', 1234, true,1)
 ;
 
 INSERT INTO p_write

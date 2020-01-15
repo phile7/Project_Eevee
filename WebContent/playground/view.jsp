@@ -113,7 +113,7 @@ margin-left: 10px;}
 
 #btjari #golist{
 	position:absolute;
-	right: 210px;
+	right: 30px;
 	width: 81px;
 	height: 81px;
 	background: url(playground/CSS/list1.png) center center no-repeat;
@@ -128,7 +128,7 @@ margin-left: 10px;}
 }
 #btjari #upd{
 	position:absolute;
-	right: 30px;
+	right: 210px;
 	width: 81px;
 	height: 81px;
 	background:url(playground/CSS/upd.png) center center no-repeat;
