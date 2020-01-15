@@ -27,7 +27,7 @@ public class ToiletWriteDAO {
 		try {
 			Class.forName(T.DRIVER);
 			conn = DriverManager.getConnection(T.URL, T.USERID, T.USERPW);
-			System.out.println("CenterDAO 객체 생성, 데이터베이스 연결");
+			System.out.println("ToiletWriteDAO 객체 생성, 데이터베이스 연결");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
