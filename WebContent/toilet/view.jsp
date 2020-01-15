@@ -91,12 +91,6 @@ margin-left: 10px;}
     color: red;
 }
 
-#golist{
-	width: 81px;
-	height: 81px;
-	background: url(playground/CSS/list1.png) center center no-repeat;
-}
-
 .buttons{
 	background-color: Transparent;
     background-repeat:no-repeat;
@@ -106,6 +100,40 @@ margin-left: 10px;}
     float: right;
     color: #238556;
 }
+
+
+
+#btjari{
+	position:absolute;
+	width: 720px;
+	height: 90px;
+	top: 220px;
+	
+}
+
+#btjari #golist{
+	position:absolute;
+	right: 210px;
+	width: 81px;
+	height: 81px;
+	background: url(toilet/CSS/list1.png) center center no-repeat;
+}
+
+#btjari #del{
+	position:absolute;
+	right: 120px;
+	width: 81px;
+	height: 81px;
+	background:url(toilet/CSS/del.png) center center no-repeat;
+}
+#btjari #upd{
+	position:absolute;
+	right: 30px;
+	width: 81px;
+	height: 81px;
+	background:url(toilet/CSS/upd.png) center center no-repeat;
+}
+
 
 .clear{clear: both;}
 
@@ -207,8 +235,8 @@ function chkSubmitCommentToComment(){
 		<div style="width: 100px; height: 100px;"></div>
 		<c:if
 		test="${sessionScope.uid == read[0].mb_uid or sessionScope.level == 2}">
-		<button class="buttons" onclick="chkDelete(${read[0].twr_uid })">삭제하기</button>
-		<button class="buttons" onclick="location.href = 'update.tdo?uid=${read[0].twr_uid }&t_uid=${read[0].t_uid }'">수정하기</button>
+		<button id="del" class="buttons" onclick="chkDelete(${read[0].twr_uid })">삭제하기</button>
+		<button id="upd" class="buttons" onclick="location.href = 'update.tdo?uid=${read[0].twr_uid }&t_uid=${read[0].t_uid }'">수정하기</button>
 	</c:if>
 	<button id="golist" class="buttons" onclick="location.href = 'list.tdo?t_uid=${read[0].t_uid }&page=${page}'"></button>
 	<!-- <button onclick="location.href = 'write.tdo?uid=${sessionScope.uid}&t_uid=${read[0].t_uid }'">신규등록</button> -->

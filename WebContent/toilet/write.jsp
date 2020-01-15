@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>글작성</title>
 <script src="ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" type="text/css" href="toilet/CSS/twrite.css"/>
 </head>
 <script>
 function chkSubmit(){
@@ -31,28 +32,29 @@ function chkSubmit(){
 }
 </script>
 <body>
-<h2>글작성</h2>
+<div id="sec">
+	<div style="width: 100px; height: 60px;"></div>
+	<h2 id="pwtt">글 작 성</h2>
+	<div id="intro">
 <form name="frm" action="writeOk.tdo?uid=${sessionScope.uid}&t_uid=<%=t_uid %>" method="post" onsubmit="return chkSubmit()">
-작성자:${sessionScope.id}<br>
-제목:
-<input type="text" name="subject"/><br>
-별점:
-<input type="text" name="twr_score"/><br>
-내용:<br>
-<textarea name="content" id="editor1"></textarea>
-<script>
-	CKEDITOR.replace('editor1', {
-		allowedContent: true,
-		width: '800px',
-		height: '400px',
-		filebrowserUploadUrl: '${pageContext.request.contextPath}/fileUpload.do'
-	});
-</script>
-<br><br>
-<input type="submit" value="등록"/>
-</form>
-<br>
-<button type="button" onclick="location.href='list.tdo?t_uid=<%=t_uid %>'">목록으로</button>
+			<div id="subj">	
+				작성자: ${sessionScope.id}<br>
+				제목:
+				<input type="text" name="subject" style="font-size: 25px;"/><br>
+		    </div>
+	</div>
+			<textarea name="content" id="editor1"></textarea>
+			<script>
+				CKEDITOR.replace('editor1', {
+					allowedContent: true,
+					width: '718px',
+					height: '400px',
+					filebrowserUploadUrl: '${pageContext.request.contextPath}/fileUpload.do'
+				});
+				</script>
+	<div id="btctl">
+		<input id="subbt" type="submit" value=""/>
+<button id="listgo" type="button" onclick="location.href='list.tdo?t_uid=<%=t_uid %>'"></button>
 </body>
 
 </html>
