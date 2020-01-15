@@ -18,13 +18,6 @@
 <head>
 <meta charset="UTF-8">
 <title>읽기 ${read[0].subject }</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="Center/CSS/view.css"/>
-<script src="https://kit.fontawesome.com/bb29575d31.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
 </head>
 <script>
 function chkDelete(id){
@@ -67,35 +60,38 @@ function chkSubmitCommentToComment(){
 	return true;
 }
 </script>
-<body style="width: 720px; height: 1300px; margin: auto;">
-<div class="MainDiv">
-	<p class="p1">작성자 : ${read[0].mb_id }</p><br>
-	<p class="p2"> 제목 : ${read[0].subject }</p><br>
-	<p class="p3">등록일 : ${read[0].regDate }</p>
-	<p class="p4">조회수 : ${read[0].viewCnt }</p><br>
-	<div class="ContentDiv"><div class="ContentDiv2">${read[0].content }</div></div>
+<body>
+	<h2>읽기 ${read[0].subject }</h2>
+	<br> 작성자 : ${read[0].mb_id }
+	<br> 제목: ${read[0].subject }
+	<br> 등록일: ${read[0].regDate }
+	<br> 조회수: ${read[0].viewCnt }
+	<br> 내용:
+	<br>
+	<hr>
+	<div>${read[0].content }</div>
+	<hr>
 		<c:if
 		test="${sessionScope.uid == read[0].mb_uid or sessionScope.level == 2}">
-		<button onclick="chkDelete(${read[0].cwr_uid })" class="Delete1"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-		<button onclick="location.href = 'cupdate.do?uid=${read[0].cwr_uid }'" class="goEdit"><i class="fas fa-edit"></i></button>
+		<button onclick="chkDelete(${read[0].cwr_uid })">삭제하기</button>
+		<button onclick="location.href = 'cupdate.do?uid=${read[0].cwr_uid }'">수정하기</button>
 	</c:if>
-	<button onclick="location.href = 'clist.do?page=${page}'" class="goList"><i class="fas fa-home"></i></button>
-	<button onclick="location.href = 'cwrite.do?uid=${sessionScope.uid}'" class="goWrite"><i class="fas fa-pencil-alt"></i></button>
+	<button onclick="location.href = 'clist.do?page=${page}'">목록보기</button>
+	<button onclick="location.href = 'cwrite.do?uid=${sessionScope.uid}'">신규등록</button>
+	<hr>
 	<br>
 	<%
 		int cnt = 0;
 	%>
 	<c:forEach var="dto" items="${comment }" varStatus="status">
-	<div class="CommentDiv">
-		<p class="p5">${dto.mb_id }</p>
-		<p class="p6">${dto.regDate }</p>
+		<span>아이디 : ${dto.mb_id }</span>
+		<span>등록일 : ${dto.regDate }</span>
 		<c:if test="${dto.co_depth == 3}">
-			<div class="div1"><p class="p7">${dto.comment }</p></div>
+			<div>내용 : ${dto.comment }</div>
 		</c:if>
-	</div>
 		<c:if
 			test="${sessionScope.uid == dto.mb_uid or sessionScope.level == 2}">
-			<button onclick="chkDeleteComment(${dto.co_uid })" class="Delete2"><i class="fas fa-eraser"></i></button>
+			<button onclick="chkDeleteComment(${dto.co_uid })">삭제하기</button>
 		</c:if><br>
 		<%
 		String loginId = (String)session.getAttribute("id");
@@ -104,7 +100,7 @@ function chkSubmitCommentToComment(){
 		int indexCommentToComment = 0;
 		CommentDTO [] comment = (CommentDTO [] )request.getAttribute("comment");
 		CommentDTO [] commentToComment = null;
-		for(int i = 0 + cnt; i < indexComment; i++) {
+		for(int i = 0 + cnt; i < indexComment; i++){
 			indexCommentToComment = (Integer) request.getAttribute("indexCommentToComment" + i);
 			commentToComment = (CommentDTO [] )request.getAttribute("commentToComment" + i);
 			for(int j = 0; j < indexCommentToComment; j++ ) {
@@ -113,15 +109,13 @@ function chkSubmitCommentToComment(){
 				String regDate = commentToComment[j].getRegDate();
 				String commentValue = commentToComment[j].getComment();
 		%>
-				<div class="CommentDD-0">
-				<p class="p-0"><%=mb_id %></p>
-				<p class="p-1"><%=regDate %></p>
-				<div class="Ddiv-0"><p class="p-3"><%=commentValue %></p></div>
-				</div>
+				<span>아이디 : <%=mb_id %></span>
+				<span>등록일 : <%=regDate %></span>
+				<div>내용 : <%=commentValue %></div>
 		<%
 				if(loginId.equals(mb_id) || idLevel.equals("2")) {
 		%>
-					<div><button onclick="chkDeleteComment(${dto.co_uid })" class="Delete3"><i class="fas fa-eraser"></i></button></div>
+					<div><button onclick="chkDeleteComment(${dto.co_uid })">삭제하기</button></div>
 		<%
 				}
 			}
@@ -133,78 +127,20 @@ function chkSubmitCommentToComment(){
 		<form name="form"
 			action="ccommentToComment.do?uid=${sessionScope.uid}&co_uid=${dto.co_uid}&cwr_uid=${read[0].cwr_uid}"
 			method="post" onsubmit="return chkSubmitCommentToComment()">
-			<input type="text" name="comment" class="ComText" /> <input
-				type="submit" value="&#xf040" class="Com" />
+			<input type="text" name="comment" style="width: 600px" /> <input
+				type="submit" value="댓글등록" />
 		</form>
+		<hr>
 	</c:forEach>
-	</div>
-	
+	<br>
+
 	<form name="frm"
 		action="ccomment.do?uid=${sessionScope.uid}&cwr_uid=${read[0].cwr_uid}"
 		method="post" onsubmit="return chkSubmitComment()">
 		<input type="text" name="comment" style="width: 600px" /> <input
 			type="submit" value="댓글등록" />
 	</form>
-	
-<div class="Maindiv2">
-<table>
-	<tr class="MainTr">
-		<th>번호</th>
-		<th></th>
-		<th>제목</th>
-		<th>작성자</th>
-		<th>조회수</th>
-		<th>등록일</th>
-	</tr>
-	<c:forEach var="dto" items="${list }" varStatus="status">
-		<c:choose>
-			<c:when test="${dto.mb_level==2 }">
-				<tr class="KingTr">
-					<td>${(page - 1) * pageRows + status.index + 1 }</td>
-					<td>공지</td>
-					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }" onclick="color()" class="${(page - 1) * pageRows + status.index + 1 }">${dto.subject }</a></td>
-					<td>${dto.mb_id }</td>
-					<td>${dto.viewCnt }</td>
-					<td>${dto.regDate }</td>
-					</tr>
-			</c:when>
-		</c:choose>	
-	</c:forEach>
-	<c:forEach var="dto" items="${list }" varStatus="status">
-		<c:choose>
-			<c:when test="${dto.mb_level==1 }">
-				<tr class="SubTr">
-					<td>${(page - 1) * pageRows + status.index + 1 }</td>
-					<td>건의</td>
-					<td><a href="cview.do?uid=${dto.cwr_uid }&page=${page }" onclick="color()" class="${(page - 1) * pageRows + status.index + 1 }">${dto.subject }</a></td>
-					<td>${dto.mb_id }</td>
-					<td>${dto.viewCnt }</td>
-					<td>${dto.regDate }</td>
-				</tr>
-			</c:when>
-		</c:choose>	
-	</c:forEach>
-
-		
-</table>
-<br>
-<button onclick="location.href='cwrite.do?uid=${sessionScope.uid}'" class="New"><i class="fas fa-pencil-alt"></i></button>
-<form action="logout.do">
-<input type="submit" class="LogOutButton" value="&#xf011">
-</form>
-<form action="mainPage.do">
-<input type="submit" value="&#xf015" class="MainPageButton">
-</form>
-
-<jsp:include page="cpagination.jsp">
-	<jsp:param value="${writePages }" name="writePages"/>
-	<jsp:param value="${totalPage }" name="totalPage"/>
-	<jsp:param value="${page }" name="curPage"/>
-</jsp:include>
-
-</div>
 </body>
-
 		</html>
 
 	</c:otherwise>

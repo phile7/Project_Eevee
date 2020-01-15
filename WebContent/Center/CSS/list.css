@@ -1,0 +1,37 @@
+@charset "UTF-8";
+.center {
+    text-align: center;
+}
+
+ul.pagination{
+	position: relative;
+	list-style-type:none;
+	padding: 0 0 0 0;
+	padding-inline-start: 0;
+}
+
+ul.pagination li{
+    display: inline-block;
+    	padding: 0;
+    
+}
+
+ul.pagination a {
+    color: black;
+    float: left;
+    padding:0;
+    text-decoration: none;
+    transition: background-color .3s;
+    margin: 0 15px 0 15px;
+}
+
+ul.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+    padding: 0;
+    
+}
+
+ul.pagination a:hover:not(.active) {background-color: #ddd;}
+

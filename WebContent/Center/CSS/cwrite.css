@@ -1,0 +1,12 @@
+@charset "UTF-8";
+body {padding: 0; margin: 0;}
+
+#sec {position: relative; width: 720px; height: 1300px; margin: 0 auto;}
+
+#sec #pwtt {padding: 0; margin: 0; width: 720px; height: 65px; background-color: #238556; color:white; text-align: center; line-height: 65px; top:60px; }
+#sec #intro { width: 720px; height: 690px; background-color: #dddddd; font-size: 25px;}
+#sec #intro #subj { position: absolute; width: 720px; height: 100px; left: 20px; top: 129px;}
+#cke_editor1 { position: absolute; top: 210px;}
+#sec #btctl { width: 720px; height: 90px; position: absolute;}
+#sec #btctl #subbt { width:81px; height: 81px; top:20px; right: 20px; bottom: 0; position: absolute; background: url(../CSS/writ.png) center center no-repeat; outline: none; border: 0px;}
+#sec #btctl #listgo {display: block; position: absolute; top:20px; left: 20px; bottom: 0; width: 81px; height: 81px; background: url(../CSS/list1.png) center center no-repeat; outline: none; border: 0px; padding: 0;}
