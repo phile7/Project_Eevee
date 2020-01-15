@@ -23,8 +23,8 @@ function chkSubmit(){
 		return false;
 	}
 	var score = frm["twr_score"].value.trim();
-	if(subject < 0.5){
-		alert("0.5점 이상 입력하셔야합니다");
+	if(subject < 0.5 or subject > 5){
+		alert("0.5점 이상, 5점 이하로 입력하셔야합니다");
 		frm["twr_score"].focus();
 		return false;
 	}
@@ -38,9 +38,11 @@ function chkSubmit(){
 	<div id="intro">
 <form name="frm" action="writeOk.tdo?uid=${sessionScope.uid}&t_uid=<%=t_uid %>" method="post" onsubmit="return chkSubmit()">
 			<div id="subj">	
-				작성자: ${sessionScope.id}<br>
+				<div style="display : none">작성자: ${sessionScope.id}</div>
 				제목:
-				<input type="text" name="subject" style="font-size: 25px;"/><br>
+				<input type="text" name="subject" style="font-size: 20px;"/><br>
+				별점:
+				<input type="text" name="twr_score" style="font-size: 20px;"/><br>
 		    </div>
 	</div>
 			<textarea name="content" id="editor1"></textarea>
@@ -54,6 +56,7 @@ function chkSubmit(){
 				</script>
 	<div id="btctl">
 		<input id="subbt" type="submit" value=""/>
+
 <button id="listgo" type="button" onclick="location.href='list.tdo?t_uid=<%=t_uid %>'"></button>
 </body>
 
