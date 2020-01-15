@@ -77,7 +77,7 @@ public class WriteController extends HttpServlet {
 		
 		// 회원로그인
 		case "/login_1.do":
-			viewPage = "logIn/login_1.jsp";
+			viewPage = "/logIn/login_1.jsp";
 			break;
 
 		case "/login_1OK.do":

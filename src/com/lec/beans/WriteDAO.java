@@ -87,8 +87,9 @@ public class WriteDAO {
 			int viewCnt = rs.getInt("pwr_viewcnt");
 			Date d = rs.getDate("pwr_regdate");
 			Time t = rs.getTime("pwr_regdate");
-			String regdate = new SimpleDateFormat("yyyy-MM-dd").format(d) + " "
-					+ new SimpleDateFormat("hh:mm:ss").format(t);
+			String regdate = new SimpleDateFormat("yyyy-MM-dd").format(d);
+//					+ " "
+//					+ new SimpleDateFormat("hh:mm:ss").format(t);
 
 			WriteDTO dto = new WriteDTO(pwr_uid, mb_uid, mb_id, subject, content, viewCnt, regdate);
 			list.add(dto);

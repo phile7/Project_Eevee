@@ -13,32 +13,52 @@
 	</c:when>
 	<c:otherwise>
 
-		<!DOCTYPE html>
-		<html lang="ko">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>읽기 ${read[0].subject }</title>
-<script src="https://kit.fontawesome.com/129bd244d8.js" crossorigin="anonymous"></script>
+<title>${read[0].subject }</title>
+<script src="https://kit.fontawesome.com/129bd244d8.js"; crossorigin="anonymous"></script>
 <style type="text/css">
+body{
+	padding: 0px;
+	margin: 0px;
+}
+
 .container {
 	width: 720px;
 	height: 1300px;
 	margin: 0 auto;
 }
 
-*{
-font-size: 18px;}
-
-.board{
-background-color: #238556;
-color: white;
-text-align: center;
-font-size: 20px;
-padding: 8px;
-font-weight: bold;
+#tong2 {
+	position:relative;
+	width: 720px;
+	margin: 0 auto;
+	top: 65px;
+	height: 700px;
 }
 
-.title{background: #DDDDDD; padding: 8px;}
+*{
+font-size: 25px;}
+
+.board{
+	width:720px;
+	height:65px;
+	line-height: 65px;
+	background-color: #238556;
+	color: white;
+	text-align: center;
+	font-size: 30px;
+	padding: 0;
+	font-weight: bold;
+}
+
+.title{
+	background: #DDDDDD; 
+	padding: 0 0 0 10px;
+	
+	}
 
 .subject{font-weight: bold;}
 
@@ -53,8 +73,8 @@ margin-left: 10px;}
 
 .comment{
 	background-color: #EEEEEE;
-	border-radius: 10px;
-	padding: 3px 15px;
+	border-radius: 0;
+	padding: 10px 0 10px 30px;
 	margin: 5px 0px;
 }
 
@@ -69,6 +89,12 @@ margin-left: 10px;}
     cursor:pointer;
     overflow: hidden; 
     color: red;
+}
+
+#golist{
+	width: 81px;
+	height: 81px;
+	background: url(playground/CSS/list1.png) center center no-repeat;
 }
 
 .buttons{
@@ -101,6 +127,23 @@ margin-left: 10px;}
 #reply{
 	size: 50px;
 }
+
+#comen {
+	display: block;
+	width: 720px;
+	height: 50px;
+	top: 300px;
+}
+
+.replybtn {
+		font-size: 20px;
+		width: 70px;
+		height: 40px;
+		border: 1px solid black;
+		cursor: pointer;
+		
+}
+
 </style>
 </head>
 <script>
@@ -146,23 +189,28 @@ function chkSubmitCommentToComment(){
 </script>
 <body>  
 <div class="container"> 
-	<div class="board">놀이터</div>
-	<div class="title">
-		<span class="subject">${read[0].subject }</span>
-		<br>
-		<span class="mb_id">${read[0].mb_id }</span><span class="tab"></span>	|<span class="tab"></span>
-		${read[0].viewCnt } <span class="tab"></span>|<span class="tab"></span>	
-		${read[0].regDate }
-	</div>
-	<div>${read[0].content }</div>
-		<c:if
-		test="${sessionScope.uid == read[0].mb_uid or sessionScope.level == 2}">
-		<button class="buttons" onclick="chkDelete(${read[0].pwr_uid })">삭제하기</button>
-		<button class="buttons" onclick="location.href = 'update.do?uid=${read[0].pwr_uid }'">수정하기</button>
-	</c:if>
-	<button class="buttons" onclick="location.href = 'list.do?page=${page}'">목록보기</button>
-	<button class="buttons" onclick="location.href = 'write.do?uid=${sessionScope.uid}'">신규등록</button>
-	<div class="clear"></div>
+			<div style="width: 100px; height: 65px;"></div>
+		<div class="board" id="titl">놀 이 터</div>
+		<div class="title">
+			<span class="subject">${read[0].subject }</span>
+			<br>
+			<span class="mb_id">${read[0].mb_id }</span><span class="tab"></span>	|<span class="tab"></span>
+			${read[0].viewCnt } <span class="tab"></span>|<span class="tab"></span>	
+			${read[0].regDate }
+		</div>
+		<div style="width: 100px; height: 100px;"></div>
+		<div>${read[0].content }</div>
+		<div style="width: 100px; height: 100px;"></div>
+			<c:if
+			test="${sessionScope.uid == read[0].mb_uid or sessionScope.level == 2}">
+			<button class="buttons" onclick="chkDelete(${read[0].pwr_uid })">삭제하기</button>
+			<button class="buttons" onclick="location.href = 'update.do?uid=${read[0].pwr_uid }'">수정하기</button>
+		</c:if>
+		
+		<button id="golist" class="buttons" onclick="location.href = 'list.do?page=${page}'" style=""></button>
+		<%-- <button class="buttons" onclick="location.href = 'write.do?uid=${sessionScope.uid}'">신규등록</button>--%>
+		<div class="clear"></div>
+
 	<hr>
 	<%
 		int cnt = 0;
@@ -214,20 +262,22 @@ function chkSubmitCommentToComment(){
 		%>
 		<form class="commentsection" name="form" 
 			action="commentToComment.do?uid=${sessionScope.uid}&co_uid=${dto.co_uid}&pwr_uid=${read[0].pwr_uid}"
-			method="post" onsubmit="return chkSubmitCommentToComment()">
-			<input class="commentinput" type="text" name="comment" style="width: 670px" /> <button class="replybtn"
-				type="submit"><i class="fab fa-replyd fa-lg"></i></button>				
+			method="post" onsubmit="return chkSubmitCommentToComment()"; style="padding: 0 0 0 30px;">
+			<input class="commentinput" type="text" name="comment" style="width: 600px" /> 
+			<button class="replybtn" type="submit">댓글</button>				
 		</form>
-		<hr>
-	</c:forEach>
-
-	<form name="frm"
-		action="comment.do?uid=${sessionScope.uid}&pwr_uid=${read[0].pwr_uid}"
-		method="post" onsubmit="return chkSubmitComment()">
-		<input class="commentinput" type="text" name="comment" style="width: 670px" /> <button class="replybtn"
-				type="submit"><i class="fab fa-replyd fa-lg"></i></button>				
-	</form>
-	<hr>
+		
+<hr>
+		</c:forEach>
+		
+			<form name="frm"
+				action="comment.do?uid=${sessionScope.uid}&pwr_uid=${read[0].pwr_uid}"
+				method="post" onsubmit="return chkSubmitComment()">
+				<input class="commentinput" type="text" name="comment" style="width: 630px;" /> 
+				<button class="replybtn"; type="submit">댓글</button>				
+			</form>
+		
+<hr>
 	
 </div>
 </body>

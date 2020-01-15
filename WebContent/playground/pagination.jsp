@@ -58,7 +58,7 @@
 %>
 <!-- top nav -->
 <div class="center">
-	<ul class="pagination">
+	<ul class="pagination" id="ppn">
 	<%= str %>
 	</ul>
 </div>
