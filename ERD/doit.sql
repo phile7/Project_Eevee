@@ -466,6 +466,7 @@ VALUES
    (3.52, 1)
 ;
 
+SELECT * FROM `member`;
 select * from t_write tw;
 select * from t_score;
 select * from t_write, member, t_score where (t_write.mb_uid = member.mb_uid and t_write.t_uid = 1) and (t_write.t_uid = t_score.t_uid and t_score.ts_uid = (select max(ts_uid) from t_score)) ORDER BY twr_uid desc LIMIT 0, 15; 

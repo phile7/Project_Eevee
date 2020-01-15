@@ -25,7 +25,7 @@
 	%>
 		<script>
 			alert("로그인 성공!");
-			location.href="GPS/Map01.do";
+			location.href="Map01.do";
 			// location.href = "mainPage.do"
 		</script>
 	</c:when>

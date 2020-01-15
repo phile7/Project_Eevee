@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import command.map.Command;
 
-@WebServlet("/GPS/Map01.do")
+@WebServlet("/Map01.do")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -48,7 +48,7 @@ public class Controller extends HttpServlet {
 		
 		// 1.커맨드 객체 수행
 		switch(com) {
-		case "/GPS/Map01.do":
+		case "/Map01.do":
 			viewPage = "/GPS/Map01.jsp";
 			break;
 		}

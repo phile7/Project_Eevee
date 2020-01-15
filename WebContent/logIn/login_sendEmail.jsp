@@ -46,7 +46,7 @@
 	
 		dao = new UserDAO();
 		
-		String host = "http://localhost:8081/Project_Eevee/";
+		String host = "http://localhost:8080/Project_Eevee/";
 		String from = "phile0403@gmail.com";
 		String to = dao.getUserEmail(userID);
 						//"phile7@naver.com";
@@ -90,6 +90,15 @@
 			return;
 		}
 			
-		
-
 %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="logIn/css/login_1.css">  
+</head>
+<body>
+<div id="emailgogo"></div>
+</body>
+</html>

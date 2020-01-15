@@ -14,7 +14,7 @@ li{ list-style-type: none;}
 #map #pop #demoJSON #twc {position: absolute; background: url(../image/woman.jpg) center center no-repeat; width: 49px; height: 102px; top:229px; left: 244px;}
 #map #pop #demoJSON #tdm {position: absolute; background: url(../image/cman.jpg) center center no-repeat; width: 72px; height: 95px; top:390px; left: 76px;}
 #map #pop #demoJSON #tdw {position: absolute; background: url(../image/cwoman.jpg) center center no-repeat; width: 72px; height: 95px; top:390px; left: 232px;}
-#map #pop #score {position: absolute; /*background-image: url(../image/zstar.png);*/ width: 229px; height: 37px; top: 25px; right: 50px; z-index: 3}
+#map #pop #score {position: absolute; background-image: url(../image/zstar.png); width: 229px; height: 37px; top: 25px; right: 50px; z-index: 3}
 #map #pop #score a {display: block; width: 100%; height: 100%;}
 #map #pop #tlist {position: absolute; width: 317px; height: 341px; border: 1px solid black; bottom: 50px; right: 50px;}
 

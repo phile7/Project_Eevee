@@ -15,9 +15,9 @@
 <title>Do It</title>
 </head>
 
-<link rel="stylesheet" href="../GPS/css/map01.css">  
+<link rel="stylesheet" href="GPS/css/map01.css">  
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a9e74f5e39c3142a6c0f11bedb03510b"></script>		<!--  지도 API 인증키 -->
-<script src="Mapjs02.js" type="text/javascript"></script>	<!--  마커 정보 배열을 담은 JS 파일 -->
+<script src="GPS/Mapjs02.js" type="text/javascript"></script>	<!--  마커 정보 배열을 담은 JS 파일 -->
 
 <body>
 <div id="t_uid"></div>
@@ -26,11 +26,21 @@
 				<div id="btn1"></div>
 				<div id="btn_bar" class="square">
 					<div id="btn_close"></div>
-					<div id="rk"><a href="#">랭킹보드</a></div>
-					<div id="play"><a href="#">놀이터</a></div>
-					<div id="out"><a href="#">로그아웃</a></div>
-					<div id="ex"><a href="#">회원탈퇴</a></div>
+					<div id="rk"><a href="rlist.do">랭킹보드</a></div>
+					<div id="play"><a href="list.do">놀이터</a></div>
+					<div id="out"><a href="logout.do">로그아웃</a></div>
+					<div id="ex"><a href="chkDelete(${sessionScope.uid})">회원탈퇴</a></div>
 				</div>
+				<script>
+					function chkDelete(id){
+						// 삭제 여부 확인
+						var r = confirm("정말 삭제하시겠습니까? 모든 회원정보가 지워집니다");
+						
+						if(r){
+							location.href = 'withdraw.do?mb_uid=' + id;
+						}
+					}
+				</script>
 		</div>
 		<div id="pop">
 			<div id="demoJSON"></div>
@@ -113,10 +123,10 @@ if (navigator.geolocation) {
         circle.setMap(map);
         
         // context 수정
-		var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
+		//var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
         
         // 서울 이외의 영역 마커(제주도)(테스트용)
-		// var url = "http://localhost:8081/togetter/location.ajax?lat=33.491975&lon=126.490608";
+		 var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=33.491975&lon=126.490608";
 		
         // 아무마커도 찍히지 않는 위치 (테스트용)
 		// var url = "http://localhost:8081/togetter/location.ajax?lat=37.497146&lon=127.048162";
@@ -272,7 +282,7 @@ if (navigator.geolocation) {
 						function scoreRequest(t_uid){
 					        $("#score a").attr({
 								// url 수정 가능
-					        	"href" : "http://localhost:8080/Project_Eevee/write.tdo?t_uid=" + t_uid
+					        	"href" : "http://localhost:8080/Project_Eevee/list.tdo?t_uid=" + t_uid
 					        });
 						};
 						
@@ -389,6 +399,6 @@ var markers = [];
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>	<!--  사용될 수도 있기 때문에  -->
 
-<script src="../GPS/js/gps.js"></script>
+<script src="GPS/js/gps.js"></script>
 </html>
 
