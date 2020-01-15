@@ -53,7 +53,8 @@ public class ToiletContentDAO {
 			pstmt.setInt(1, t_uid);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				String content = rs.getString("twr_content");
+				String content = rs.getString("twr_content").trim();
+				if(content.equals("")) continue;
 				list.add(new ToiletContentDTO(content));
 			}
 		} finally {

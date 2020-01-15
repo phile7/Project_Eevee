@@ -48,7 +48,7 @@ public interface T {
 
 	public static final String SQL_WRITE_UPDATE = "UPDATE t_write SET twr_subject = ?, twr_content = ?, twr_score = ? WHERE twr_uid = ?";
 
-	public static final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM t_write";
+	public static final String SQL_COUNT_ALL = "SELECT COUNT(*) FROM t_write WHERE t_uid = ?";
 
 	public static final String SQL_SELECT_FROM_ROW = "select * from t_write, member, t_score where (t_write.mb_uid = member.mb_uid and t_write.t_uid = ?) and (t_write.t_uid = t_score.t_uid and t_score.ts_uid = (select max(ts_uid) from t_score)) ORDER BY twr_uid desc LIMIT ?, ?";
 

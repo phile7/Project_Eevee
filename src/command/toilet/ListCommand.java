@@ -37,7 +37,7 @@ public class ListCommand implements Command {
 		
 		try {
 			// 글 전체 개수 구하기
-			cnt = dao.countAll();
+			cnt = dao.countAll(t_uid);
 			
 			// 총 몇페이지 분량인가?
 			totalPage = (int)Math.ceil(cnt / (double)pageRows); //소수 올림

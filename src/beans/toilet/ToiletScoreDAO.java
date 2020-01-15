@@ -43,16 +43,15 @@ public class ToiletScoreDAO {
 	}
 
 	// select score
-	public double selectScore(int mb_uid, int t_uid) throws SQLException {
+	public double selectScore(int t_uid) throws SQLException {
 		double score = 0;
 		try {
-			pstmt = conn.prepareStatement(S.SQL_SELECT_SCORE_BY_JOIN);
-			pstmt.setInt(1, mb_uid);
-			pstmt.setInt(2, mb_uid);
-			pstmt.setInt(3, t_uid);
+			pstmt = conn.prepareStatement("SELECT ts_score FROM t_score WHERE t_uid = ? ORDER BY ts_uid DESC");
+			pstmt.setInt(1, t_uid);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				score = rs.getDouble("score");
+				score = rs.getDouble("ts_score");
+				System.out.println(score);
 				break;
 			}
 		} finally {

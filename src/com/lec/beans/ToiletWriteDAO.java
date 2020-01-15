@@ -295,11 +295,12 @@ public class ToiletWriteDAO {
 		return arr;
 	}
 	// 총 몇개의 글이 있는지 계산
-	public int countAll() throws SQLException {
+	public int countAll(int t_uid) throws SQLException {
 		int cnt = 0;
 		
 		try {
 			pstmt = conn.prepareStatement(T.SQL_COUNT_ALL);
+			pstmt.setInt(1, t_uid);
 			rs = pstmt.executeQuery();
 			rs.next(); // 첫번째 행의
 			cnt = rs.getInt(1); // 첫번째 컬럼

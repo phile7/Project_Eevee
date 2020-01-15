@@ -25,7 +25,7 @@ public class ScoreAjaxCommand implements Command {
 		int mb_uid = Integer.parseInt(request.getParameter("mb_uid"));  // 매개변수 검증 필요
 		
 		try {
-			score = dao.selectScore(mb_uid, t_uid);
+			score = dao.selectScore(t_uid);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

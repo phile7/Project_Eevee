@@ -28,6 +28,65 @@
 					<div id="btn_close"></div>
 					<div id="rk"><a href="rlist.do">랭킹보드</a></div>
 					<div id="play"><a href="list.do">놀이터</a></div>
+					<div id="out"><a href="logout.do">로그아웃</a></div>
+					<div id="ex"><a href="chkDelete(${sessionScope.uid})">회원탈퇴</a></div>
+				</div>
+				<script>
+					function chkDelete(id){
+						// 삭제 여부 확인
+						var r = confirm("정말 삭제하시겠습니까? 모든 회원정보가 지워집니다");
+						
+						if(r){
+							location.href = 'withdraw.do?mb_uid=' + id;
+						}
+					}
+				</script>
+		</div>
+		<div id="pop">
+			<div id="demoJSON"></div>
+			<div id="score"><a href="#"></a></div>
+			<div id="tlist">리뷰 게시판</div>	
+			
+			
+			
+		</div>
+
+		
+	
+</div>	<!-- 지도 div -->
+
+
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+<%@ page import="beans.toilet.*" %>    
+<%@ page import = "java.sql.*" %>
+
+<%
+	ToiletDTO [] arr = (ToiletDTO [] )request.getAttribute("data");
+%>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Do It</title>
+</head>
+
+<link rel="stylesheet" href="GPS/css/map01.css">  
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a9e74f5e39c3142a6c0f11bedb03510b"></script>		<!--  지도 API 인증키 -->
+<script src="GPS/Mapjs02.js" type="text/javascript"></script>	<!--  마커 정보 배열을 담은 JS 파일 -->
+
+<body>
+<div id="t_uid"></div>
+<div id="map">
+		<div id="menubar">
+				<div id="btn1"></div>
+				<div id="btn_bar" class="square">
+					<div id="btn_close"></div>
+					<div id="rk"><a href="rlist.do">랭킹보드</a></div>
+					<div id="play"><a href="list.do">놀이터</a></div>
 					<div id="center"><a href="clist.do">고객센터</a></div>
 					<div id="out"><a href="logout.do">로그아웃</a></div>
 					<div id="ex"><a onclick="chkDelete(${sessionScope.uid})">회원탈퇴</a></div>
@@ -100,10 +159,16 @@ if (navigator.geolocation) {
 	//function onSuccess(position){
     //watchID = navigator.geolocation.watchPosition(function(position) {
         
-    	
-    	var lat = 33.491975, lon=126.490608;
-        //var lat = position.coords.latitude, // 위도
-          //  lon = position.coords.longitude; // 경도
+    	// 현재 위치()
+        //var lat = position.coords.latitude, lon = position.coords.longitude; // 위도, 경도
+            
+        // 제주도로 현재 위치 설정
+        //var lat = 33.491975, lon=126.490608;
+        
+        // 제주도2로 현재위치 설정
+        //var lat=37.593444, lon= 127.198082;
+        
+        var lat=34.794498, lon=126.391604;
         
         var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
         
@@ -126,10 +191,10 @@ if (navigator.geolocation) {
         circle.setMap(map);
         
         // context 수정
-		var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
+		var url = "http://localhost:8081/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
         
         // 서울 이외의 영역 마커(제주도)(테스트용)
-		// var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=33.491975&lon=126.490608";
+		// var url = "http://localhost:8081/Project_Eevee/location.ajax?lat=33.491975&lon=126.490608";
 		
         // 아무마커도 찍히지 않는 위치 (테스트용)
 		// var url = "http://localhost:8081/togetter/location.ajax?lat=37.497146&lon=127.048162";
@@ -200,7 +265,7 @@ if (navigator.geolocation) {
 						var t_uid = this.getTitle();
 
 						// url 수정
-						url = "http://localhost:8080/Project_Eevee/data.ajax?t_uid=" + t_uid ;
+						url = "http://localhost:8081/Project_Eevee/data.ajax?t_uid=" + t_uid ;
 						
 						$.ajax({
 							url : url,
@@ -216,7 +281,7 @@ if (navigator.geolocation) {
 						});
 						//if(${sessionScope.uid} != null) alert(${sessionScope.uid});
 							// url 수정
-							url = "http://localhost:8080/Project_Eevee/score.ajax?t_uid=" + t_uid + "&mb_uid=" + ${sessionScope.uid}
+							url = "http://localhost:8081/Project_Eevee/score.ajax?t_uid=" + t_uid + "&mb_uid=" + ${sessionScope.uid}
 							
 							$.ajax({
 								url : url,
@@ -256,7 +321,7 @@ if (navigator.geolocation) {
 						}
 						
 						// 리뷰 가져오는 ajax부분 수정
-						url = "http://localhost:8080/Project_Eevee/content.ajax?t_uid=" + t_uid;
+						url = "http://localhost:8081/Project_Eevee/content.ajax?t_uid=" + t_uid;
 						
 						$.ajax({
 							url : url,
@@ -287,7 +352,7 @@ if (navigator.geolocation) {
 						function scoreRequest(t_uid){
 					        $("#score a").attr({
 								// url 수정 가능
-					        	"href" : "http://localhost:8080/Project_Eevee/list.tdo?t_uid=" + t_uid
+					        	"href" : "http://localhost:8081/Project_Eevee/list.tdo?t_uid=" + t_uid
 					        });
 						};
 						
