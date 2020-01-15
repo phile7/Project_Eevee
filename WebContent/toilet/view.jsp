@@ -113,7 +113,7 @@ margin-left: 10px;}
 
 #btjari #golist{
 	position:absolute;
-	right: 210px;
+	right: 30px;
 	width: 81px;
 	height: 81px;
 	background: url(toilet/CSS/list1.png) center center no-repeat;
@@ -128,7 +128,7 @@ margin-left: 10px;}
 }
 #btjari #upd{
 	position:absolute;
-	right: 30px;
+	right: 210px;
 	width: 81px;
 	height: 81px;
 	background:url(toilet/CSS/upd.png) center center no-repeat;
@@ -233,13 +233,15 @@ function chkSubmitCommentToComment(){
 		<div style="width: 100px; height: 100px;"></div>
 		<div>${read[0].content }</div>
 		<div style="width: 100px; height: 100px;"></div>
+	<div id="btjari">
 		<c:if
 		test="${sessionScope.uid == read[0].mb_uid or sessionScope.level == 2}">
-		<button id="del" class="buttons" onclick="chkDelete(${read[0].twr_uid })">삭제하기</button>
-		<button id="upd" class="buttons" onclick="location.href = 'update.tdo?uid=${read[0].twr_uid }&t_uid=${read[0].t_uid }'">수정하기</button>
+		<button id="del" class="buttons" onclick="chkDelete(${read[0].twr_uid })"></button>
+		<button id="upd" class="buttons" onclick="location.href = 'update.tdo?uid=${read[0].twr_uid }&t_uid=${read[0].t_uid }'"></button>
 	</c:if>
 	<button id="golist" class="buttons" onclick="location.href = 'list.tdo?t_uid=${read[0].t_uid }&page=${page}'"></button>
 	<!-- <button onclick="location.href = 'write.tdo?uid=${sessionScope.uid}&t_uid=${read[0].t_uid }'">신규등록</button> -->
+	</div>
 	<div class="clear"></div>
 	<hr>
 	<%
@@ -267,26 +269,28 @@ function chkSubmitCommentToComment(){
 		for(int i = 0 + cnt; i < indexComment; i++){
 			indexCommentToComment = (Integer) request.getAttribute("indexCommentToComment" + i);
 			commentToComment = (CommentDTO [] )request.getAttribute("commentToComment" + i);
-			for(int j = 0; j < indexCommentToComment; j++ )
+			for(int j = 0; j < indexCommentToComment; j++ ){
 			if(comment[i].getCo_uid() == commentToComment[j].getCo_puid()) {
 				String mb_id = commentToComment[j].getMb_id();
 				String regDate = commentToComment[j].getRegDate();
 				String commentValue = commentToComment[j].getComment();
 		%>
 			<div class="comment">
-				<span class="commenter"><%=mb_id %></span> <span class="tab"></span>|<span class="tab"></span>
+				<span class="commenter">ㄴ    <%=mb_id %></span><span class="tab"></span>|<span class="tab"></span>
 				<span><%=regDate %></span>
 		<%
 				if(loginId.equals(mb_id) || idLevel.equals("2")) {
 		%>
 					<button class="deletecomment" onclick="chkDeleteComment(${dto.co_uid })">삭제</button>
-				<div><%=commentValue %></div>
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;<%=commentValue %></div>
 			</div>
 		<%
 				}
 			}
 		}
 		cnt++;
+		break;
+		}
 		%>
 		<form class="commentsection" name="form"
 			action="commentToComment.tdo?uid=${sessionScope.uid}&co_uid=${dto.co_uid}&twr_uid=${read[0].twr_uid}&t_uid=${read[0].t_uid}"

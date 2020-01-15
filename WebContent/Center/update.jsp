@@ -19,6 +19,7 @@
 <title>수정 ${upd[0].subject }</title>
 </head>
 <script src="ckeditor/ckeditor.js"></script>
+<link rel="stylesheet" type="text/css" href="Center/CSS/cupdate.css"/>
 <script>
 // form 검증
 function chkSubmit(){
@@ -36,33 +37,40 @@ function chkSubmit(){
 }
 </script>
 <body>
-<h2>수정</h2>
-<%--내용 과 제목만 수정 가능. submit 하기전에 검증 --%>
-<form name="frm" action="cupdateOk.do" 
-	method="post" onsubmit="return chkSubmit()">
-<input type="hidden" name="uid" value="${sel[0].cwr_uid }"/>	
-작성자 :  ${sel[0].mb_id }<br>  <%-- 작성자 이름은 변경 불가 --%>
-제목 : 
-<input type="text" name="subject" value="${sel[0].subject }"><br>
-내용 :
-<textarea name="content" id="editor1"> ${sel[0].content }</textarea>
-<script>
-	CKEDITOR.replace('editor1', {
-		allowedContent: true,
-		width: '800px',
-		height: '400px',
-		filebrowserUploadUrl: '${pageContext.request.contextPath}/cfileUpload.do'
-	});
-</script>
-<br><br>
-<input type="submit" value="수정"/>
-</form>
-
-<button onclick="history.back()">이전으로</button>
-<button onclick="location.href = 'clist.do'">목록보기</button>
+<div id="sec">
+	<div style="width: 100px; height: 60px;"></div>
+	<h2 id="pwtt">수정하기</h2>
+	<div id="intro">
+			<form name="frm" action="cupdateOk.do" method="post" onsubmit="return chkSubmit()">
+				<div id="subj">	
+					<input type="hidden" name="uid" value="${sel[0].cwr_uid }"/>	
+					작성자 :  ${sel[0].mb_id }<br>  <%-- 작성자 이름은 변경 불가 --%>
+					제목 : 
+					<input type="text" name="subject" value="${sel[0].subject }" style="font-size: 25px;"><br>
+				</div>
+	</div>
+			<textarea name="content" id="editor1"> ${sel[0].content }</textarea>
+			<script>
+				CKEDITOR.replace('editor1', {
+					allowedContent: true,
+					width: '718px',
+					height: '400px',
+					filebrowserUploadUrl: '${pageContext.request.contextPath}/cfileUpload.do'
+				});
+			</script>
+	<div id="btctl">
+		<input id="subbt" type="submit" value=""/>
+		<button onclick="location.href = 'clist.do'" id="listgo"></button>
+	</div>
+	</form>
+	</div>
+		
+	</div>				
 
 </body>
+
 </html>
+
 	
 	</c:otherwise>
 </c:choose>    

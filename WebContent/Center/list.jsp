@@ -26,8 +26,9 @@ th, td{
 		height: 60px;
 		text-align:  center;
 		padding: 0;
-		border-bottom: 1px dotted;
+		border-bottom: 1px dotted black;
 }
+
 #sub1{
 		width: 170px;
 		padding: 0;
@@ -144,8 +145,9 @@ a {text-decoration: none; color: black;}
 
 
 #pageN {
+	padding: 0;
 	margin: 0;
-	position: relative;
+	position: absolute;
 	bottom: -130px;
 	width: 720px;
 	height: 100px;
@@ -185,10 +187,10 @@ a {text-decoration: none; color: black;}
 	<tr class="writes">
 		<c:choose>
 			<c:when test="${dto.mb_level==2 }">
-				<tr style = "color : red">
-					<td>${cnt - ((page - 1) * pageRows + status.index + 1) }</td>
+				<tr style="color: red; font-weight: bold;">
+					<td>${cnt - ((page - 1) * pageRows + status.index) }</td>
 					<td>공지</td>
-					<td><a style = "color : red" href="cview.do?uid=${dto.cwr_uid }&page=${page }">${dto.subject }</a></td>
+					<td><a style = "color : red; font-weight: bold;" href="cview.do?uid=${dto.cwr_uid }&page=${page }">${dto.subject }</a></td>
 					<td>${dto.mb_id }</td>
 					<td>${dto.viewCnt }</td>
 					<td>${dto.regDate }</td>
@@ -218,7 +220,7 @@ a {text-decoration: none; color: black;}
 </table>
 <br>
 <div id="wtb">
-<button id="wtbb" class="buttons" onclick="location.href='cwrite.do?uid=${sessionScope.uid}'">신규등록</button>
+<button id="wtbb" class="buttons" onclick="location.href='cwrite.do?uid=${sessionScope.uid}'"></button>
 </div>
 
 		<div id="mgoL">

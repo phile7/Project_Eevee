@@ -273,13 +273,13 @@ function chkSubmitCommentToComment(){
 				String commentValue = commentToComment[j].getComment();
 		%>
 			<div class="comment">
-				<span class="commenter"><%=mb_id %></span> <span class="tab"></span>|<span class="tab"></span>
+				<span class="commenter">ㄴ    <%=mb_id %></span><span class="tab"></span>|<span class="tab"></span>
 				<span><%=regDate %></span>
 		<%
 				if(loginId.equals(mb_id) || idLevel.equals("2")) {
 		%>
 					<button class="deletecomment" onclick="chkDeleteComment(${dto.co_uid })">삭제</button>
-				<div><%=commentValue %></div>
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;<%=commentValue %></div>
 			</div>
 		<%
 				}

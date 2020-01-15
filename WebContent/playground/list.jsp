@@ -170,7 +170,7 @@ a {text-decoration: none; color: black;}
 			</tr>  
 			<c:forEach var="dto" items="${list }" varStatus="status">
 				<tr class="writes">
-					<td>${cnt - ((page - 1) * pageRows + status.index + 1) }</td>
+					<td>${cnt - ((page - 1) * pageRows + status.index) }</td>
 					<td><a href="view.do?uid=${dto.pwr_uid }&page=${page }">${dto.subject }[${arrComment[status.index]}]</a></td>
 					<td>${dto.regDate }</td>
 				</tr>

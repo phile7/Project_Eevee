@@ -87,9 +87,7 @@ public class CenterDAO {
 				content = "";
 			int viewCnt = rs.getInt("cwr_viewcnt");
 			Date d = rs.getDate("cwr_regdate");
-			Time t = rs.getTime("cwr_regdate");
-			String regdate = new SimpleDateFormat("yyyy-MM-dd").format(d) + " "
-					+ new SimpleDateFormat("hh:mm:ss").format(t);
+			String regdate = new SimpleDateFormat("yyyy-MM-dd").format(d);
 
 			CenterDTO dto = new CenterDTO(cwr_uid, mb_uid, mb_level, mb_id, subject, content, viewCnt, regdate);
 			list.add(dto);

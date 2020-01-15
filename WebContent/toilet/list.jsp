@@ -144,8 +144,9 @@ a {text-decoration: none; color: black;}
 
 
 #pageN {
+	padding: 0;
 	margin: 0;
-	position: relative;
+	position: absolute;
 	bottom: -130px;
 	width: 720px;
 	height: 100px;
@@ -184,7 +185,7 @@ a {text-decoration: none; color: black;}
 			</tr>
 			<c:forEach var="dto" items="${list }" varStatus="status">
 				<tr class="writes">
-					<td>${cnt - ((page - 1) * pageRows + status.index + 1) }</td>
+					<td>${cnt - ((page - 1) * pageRows + status.index) }</td>
 					<td><a href="view.tdo?uid=${dto.twr_uid }&page=${page }&t_uid=${dto.t_uid}">${dto.subject }[${arrComment[status.index]}]</a></td>
 					<td>${dto.mb_id }</td>
 					<td>${dto.twr_score }</td>

@@ -28,6 +28,7 @@
 					<div id="btn_close"></div>
 					<div id="rk"><a href="rlist.do">랭킹보드</a></div>
 					<div id="play"><a href="list.do">놀이터</a></div>
+					<div id="center"><a href="clist.do">고객센터</a></div>
 					<div id="out"><a href="logout.do">로그아웃</a></div>
 					<div id="ex"><a onclick="chkDelete(${sessionScope.uid})">회원탈퇴</a></div>
 				</div>
