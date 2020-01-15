@@ -21,17 +21,17 @@ function chkSubmit(){
 }
 </script>
 <body>
-<div id="pwcenter">
-	
+<div id="sec">
+	<div style="width: 100px; height: 60px;"></div>
 	<h2 id="pwtt">글 작 성</h2>
-	
-	<div id="pwss">
+	<div id="intro">
 			<form name="frm" action="writeOk.do?uid=${sessionScope.uid}" method="post" onsubmit="return chkSubmit()">
-			작성자:${sessionScope.id}<br>
-			제목:
-			<input type="text" name="subject"/><br>
+			<div id="subj">	
+				작성자: ${sessionScope.id}<br>
+				제목:
+				<input type="text" name="subject" style="font-size: 25px;"/><br>
+		    </div>
 	</div>
-			<br>
 			<textarea name="content" id="editor1"></textarea>
 			<script>
 				CKEDITOR.replace('editor1', {
@@ -40,13 +40,15 @@ function chkSubmit(){
 					height: '400px',
 					filebrowserUploadUrl: '${pageContext.request.contextPath}/fileUpload.do'
 				});
-			</script>
-			
-			<input type="submit" value="등록"/>
-			</form>
-			<br>
-			<button type="button" onclick="location.href='list.do'">목록으로</button>
-</div>
+				</script>
+	<div id="btctl">
+		<input id="subbt" type="submit" value=""/>
+		<button id="listgo" type="button" onclick="location.href='list.do'"></button>
+	</div>
+		</form>
+	</div>
+		
+	</div>				
 
 </body>
 
