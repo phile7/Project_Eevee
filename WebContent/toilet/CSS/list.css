@@ -4,7 +4,7 @@
 }
 
 ul.pagination{
-	position: absolute;
+	position: relative;
 	list-style-type:none;
 	padding: 0 0 0 0;
 	padding-inline-start: 0;

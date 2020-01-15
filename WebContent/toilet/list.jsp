@@ -144,9 +144,8 @@ a {text-decoration: none; color: black;}
 
 
 #pageN {
-	padding: 0;
 	margin: 0;
-	position: absolute;
+	position: relative;
 	bottom: -130px;
 	width: 720px;
 	height: 100px;
@@ -173,7 +172,7 @@ a {text-decoration: none; color: black;}
 	<div class ="tong">
 		<table>
 			<tr class="title">  
-				<th class="title" colspan="3">화장실 리뷰</th>
+				<th class="title" colspan="6">화장실 리뷰</th>
 			</tr>
 			<tr>
 				<th id = "num1">번호</th>

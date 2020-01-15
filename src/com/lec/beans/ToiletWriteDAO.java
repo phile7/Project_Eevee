@@ -129,8 +129,7 @@ public class ToiletWriteDAO {
 			int viewCnt = rs.getInt("twr_viewcnt");
 			Date d = rs.getDate("twr_regdate");
 			Time t = rs.getTime("twr_regdate");
-			String regdate = new SimpleDateFormat("yyyy-MM-dd").format(d) + " "
-					+ new SimpleDateFormat("hh:mm:ss").format(t);
+			String regdate = new SimpleDateFormat("yyyy-MM-dd").format(d);
 
 			ToiletWriteDTO dto = new ToiletWriteDTO(twr_uid, mb_uid, t_uid, ts_uid, twr_score, ts_score, mb_id, subject, content, viewCnt, regdate);
 			list.add(dto);
