@@ -241,7 +241,7 @@ if (navigator.geolocation) {
 							} else if(4 > score && score >= 3.5) {
 								$("#score").css("background-image", "url('./GPS/image/threeH.png')");
 							} else if(3.5 > score && score >= 3) {
-								$("#score").css("background-image", "url('./GPS/image/three.png')");
+								$("#score").css("background-image", "url('./GPS/image/3star.png')");
 							} else if(3 > score && score >= 2.5){
 								$("#score").css("background-image", "url('./GPS/image/twoH.png')");
 							} else if(2.5 > score && score >= 2) {
