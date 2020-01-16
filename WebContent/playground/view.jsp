@@ -76,6 +76,7 @@ margin-left: 10px;}
 	border-radius: 0;
 	padding: 10px 0 10px 30px;
 	margin: 5px 0px;
+	 overflow: auto;
 }
 
 .commenter{
@@ -163,12 +164,18 @@ margin-left: 10px;}
 	top: 300px;
 }
 
+.commentsection {
+	width: 720 px;
+	height: 40 px;
+}
 .replybtn {
 		font-size: 20px;
 		width: 70px;
 		height: 40px;
 		border: 1px solid black;
 		cursor: pointer;
+		
+		position: absolute;
 		
 }
 
@@ -289,13 +296,14 @@ function chkSubmitCommentToComment(){
 		break;
 		}
 		%>
+	<div style="width: 720px; height: 40px;">	
 		<form class="commentsection" name="form" 
 			action="commentToComment.do?uid=${sessionScope.uid}&co_uid=${dto.co_uid}&pwr_uid=${read[0].pwr_uid}"
 			method="post" onsubmit="return chkSubmitCommentToComment()"; style="padding: 0 0 0 30px;">
-			<input class="commentinput" type="text" name="comment" style="width: 600px" /> 
+			<input class="commentinput" type="text" name="comment" style="width: 560px;" /> 
 			<button class="replybtn" type="submit">댓글</button>				
 		</form>
-		
+	</div>
 <hr>
 		</c:forEach>
 		
