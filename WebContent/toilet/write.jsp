@@ -23,7 +23,7 @@ function chkSubmit(){
 		return false;
 	}
 	var score = frm["twr_score"].value.trim();
-	if(subject < 0.5 or subject > 5){
+	if(subject < 0.5 || subject > 5){
 		alert("0.5점 이상, 5점 이하로 입력하셔야합니다");
 		frm["twr_score"].focus();
 		return false;

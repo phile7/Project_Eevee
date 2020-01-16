@@ -280,7 +280,7 @@ function chkSubmitCommentToComment(){
 				String commentValue = commentToComment[j].getComment();
 		%>
 			<div class="comment">
-				<span class="commenter">ㄴ    <%=mb_id %></span><span class="tab"></span>|<span class="tab"></span>
+				<span class="commenter">ㄴ<%=mb_id %></span><span class="tab"></span>|<span class="tab"></span>
 				<span><%=regDate %></span>
 		<%
 				if(loginId.equals(mb_id) || idLevel.equals("2")) {

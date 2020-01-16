@@ -28,6 +28,7 @@
 					<div id="btn_close"></div>
 					<div id="rk"><a href="rlist.do">랭킹보드</a></div>
 					<div id="play"><a href="list.do">놀이터</a></div>
+					<div id="center"><a href="clist.do">고객센터</a></div>
 					<div id="out"><a href="logout.do">로그아웃</a></div>
 					<div id="ex"><a href="chkDelete(${sessionScope.uid})">회원탈퇴</a></div>
 				</div>
@@ -131,7 +132,7 @@ if (navigator.geolocation) {
         circle.setMap(map);
         
         // context 수정
-		var url = "http://localhost:8081/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
+		var url = "http://localhost:8080/Project_Eevee/location.ajax?lat=" + lat + "&lon=" + lon;
         
         // 서울 이외의 영역 마커(제주도)(테스트용)
 		// var url = "http://localhost:8081/Project_Eevee/location.ajax?lat=33.491975&lon=126.490608";
@@ -205,7 +206,7 @@ if (navigator.geolocation) {
 						var t_uid = this.getTitle();
 
 						// url 수정
-						url = "http://localhost:8081/Project_Eevee/data.ajax?t_uid=" + t_uid ;
+						url = "http://localhost:8080/Project_Eevee/data.ajax?t_uid=" + t_uid ;
 						
 						$.ajax({
 							url : url,
@@ -221,7 +222,7 @@ if (navigator.geolocation) {
 						});
 						//if(${sessionScope.uid} != null) alert(${sessionScope.uid});
 							// url 수정
-							url = "http://localhost:8081/Project_Eevee/score.ajax?t_uid=" + t_uid + "&mb_uid=" + ${sessionScope.uid}
+							url = "http://localhost:8080/Project_Eevee/score.ajax?t_uid=" + t_uid + "&mb_uid=" + ${sessionScope.uid}
 							
 							$.ajax({
 								url : url,
@@ -292,7 +293,7 @@ if (navigator.geolocation) {
 						function scoreRequest(t_uid){
 					        $("#score a").attr({
 								// url 수정 가능
-					        	"href" : "http://localhost:8081/Project_Eevee/list.tdo?t_uid=" + t_uid
+					        	"href" : "http://localhost:8080/Project_Eevee/list.tdo?t_uid=" + t_uid
 					        });
 						};
 						

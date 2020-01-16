@@ -15,7 +15,7 @@ drop table c_write;
 
 
 -- member 테이블 테스트 데이터
-insert into member (mb_uid, mb_id, mb_password, mb_email, `mb_emailSign`, mb_level) values (1, "test1", "test1", "test@naver.com", true, 1);
+insert into member (mb_uid, mb_id, mb_password, mb_email, `mb_emailSign`, mb_level) values (1, "test1", "test1", "test@naver.com", true, 2);
 insert into member (mb_uid, mb_id, mb_password, mb_email, `mb_emailSign`, mb_level) values (2, "test2", "test2", "test@naver.com", true, 1);
 insert into member (mb_uid, mb_id, mb_password, mb_email, `mb_emailSign`, mb_level) values (3, "test3", "test3", "test@naver.com", true, 1);
 insert into member (mb_uid, mb_id, mb_password, mb_email, `mb_emailSign`, mb_level) values (4, "test4", "test4", "test@naver.com", true, 1);
