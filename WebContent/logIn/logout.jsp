@@ -12,7 +12,10 @@
 %>
 
 <script>
+
+
 alert("로그아웃 되어습니다");
+
 location.href = "login_1.do";
 </script>
 
